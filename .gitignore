@@ -41,3 +41,7 @@ LINKEDIN_POST_DRAFT.md
 # Quarantined Sweep A model. Superseded by model/gm/ and kept locally only so a
 # reader cannot mistake it for the current golden model.
 model/golden/
+boot/*.elf
+boot/*.bin
+boot/BOOT.BIN
+*.pre_dbg

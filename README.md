@@ -541,4 +541,22 @@ needs.
 
 ## License
 
-TBD
+MIT. See `LICENSE`.
+
+That covers the RTL, testbenches, golden model, build scripts and documentation
+in this repository, which are my own work. It does **not** cover output of the
+AMD toolchain that happens to sit alongside them: generated IP under
+`vivado/kv_guard/`, the `.xci` wrappers, and tool reports. Those carry AMD's
+terms, not mine. FSBL and PMU firmware binaries are deliberately not committed
+for the same reason; `boot/README.md` shows how to regenerate them.
+
+## About
+
+Built by John Bagshaw, FPGA and ASIC design engineer.
+
+Most engineers who write RTL have had their work judged by a keyword filter
+rather than by anything they actually built. I run ShawSilicon because I think
+that is backwards. Prove it once, and keep the result: a work sample and a
+recorded technical defence that travels with you.
+
+https://shawsilicon.ai
