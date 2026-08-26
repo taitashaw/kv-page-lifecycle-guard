@@ -44,8 +44,8 @@ The Xilinx install alone is 166 GB. The two largest user files are TEXBAT
 GNSS datasets referenced by an existing project and must not be deleted
 without the owner's decision:
 
-- /home/jotshawlinux/Downloads/ds7.bin  47.0 GB
-- /home/jotshawlinux/Downloads/ds2.bin  45.7 GB
+- <workspace>/ds7.bin  47.0 GB
+- <workspace>/ds2.bin  45.7 GB
 
 A Vivado synthesis, implementation and bitstream run for a Zynq design of
 this class needs materially more than 3 GB of scratch. This must be resolved

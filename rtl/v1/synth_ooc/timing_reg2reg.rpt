@@ -2,8 +2,8 @@ Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanc
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version      : Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025
 | Date              : Mon Aug 24 16:45:13 2026
-| Host              : jotshawlinux-Legion running 64-bit Ubuntu 24.04.4 LTS
-| Command           : report_timing -from [all_registers] -to [all_registers] -delay_type max -max_paths 5 -input_pins -file /home/jotshawlinux/Downloads/frontier-inference-zcu104/rtl/v1/synth_ooc/timing_reg2reg.rpt
+| Host              : <host> running 64-bit Ubuntu 24.04.4 LTS
+| Command           : report_timing -from [all_registers] -to [all_registers] -delay_type max -max_paths 5 -input_pins -file <repo>/rtl/v1/synth_ooc/timing_reg2reg.rpt
 | Design            : lifecycle_guard_top
 | Device            : xczu7ev-ffvc1156
 | Speed File        : -2  PRODUCTION 1.30 05-15-2022

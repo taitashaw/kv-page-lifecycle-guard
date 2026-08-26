@@ -2,8 +2,8 @@ Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanc
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025
 | Date             : Tue Aug 25 20:32:17 2026
-| Host             : jotshawlinux-Legion running 64-bit Ubuntu 24.04.4 LTS
-| Command          : report_power -file /home/jotshawlinux/Downloads/frontier-inference-zcu104/vivado/rpt_power_impl.txt
+| Host             : <host> running 64-bit Ubuntu 24.04.4 LTS
+| Command          : report_power -file <repo>/vivado/rpt_power_impl.txt
 | Design           : kv_guard_bd_wrapper
 | Device           : xczu7ev-ffvc1156-2-e
 | Design State     : routed

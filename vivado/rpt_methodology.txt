@@ -2,8 +2,8 @@ Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanc
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025
 | Date         : Tue Aug 25 20:32:20 2026
-| Host         : jotshawlinux-Legion running 64-bit Ubuntu 24.04.4 LTS
-| Command      : report_methodology -file /home/jotshawlinux/Downloads/frontier-inference-zcu104/vivado/rpt_methodology.txt
+| Host         : <host> running 64-bit Ubuntu 24.04.4 LTS
+| Command      : report_methodology -file <repo>/vivado/rpt_methodology.txt
 | Design       : kv_guard_bd_wrapper
 | Device       : xczu7ev-ffvc1156-2-e
 | Speed File   : -2
@@ -78,25 +78,25 @@ Related violations: <none>
 XDCB-5#1 Warning
 Runtime inefficient way to find pin objects  
 The option '-from : [get_pins -hierarchical -filter {NAME =~ *ila_core_inst/u_trig/N_DDR_TC.N_DDR_TC_INST[*].U_TC/allx_typeA_match_detection.ltlib_v1_0_3_allx_typeA_inst/DUT/u_srl_drive/CLK}]' of constraint 'set_false_path' uses inefficient query to find pin objects (see constraint position '116' in the Timing Constraint window in Vivado IDE). To reduce runtime, it is recommended to get the pins through the cell objects. Please refer to Using Constraints Guide (Constraints Efficiency). An example of optimal query is: get_pins -filter {REF_PIN_NAME=~yy*} -of_objects [get_cells -hierarchical xx*].
-Current XDC: /home/jotshawlinux/Downloads/frontier-inference-zcu104/vivado/kv_guard/kv_guard.gen/sources_1/bd/kv_guard_bd/ip/kv_guard_bd_sila_axi_0/bd_0/ip/ip_0/ila_v6_2/constraints/ila.xdc (Line: 72)
+Current XDC: <repo>/vivado/kv_guard/kv_guard.gen/sources_1/bd/kv_guard_bd/ip/kv_guard_bd_sila_axi_0/bd_0/ip/ip_0/ila_v6_2/constraints/ila.xdc (Line: 72)
 Related violations: <none>
 
 XDCB-5#2 Warning
 Runtime inefficient way to find pin objects  
 The option '-from : [get_pins -hierarchical -filter {NAME =~ *ila_core_inst/u_trig/N_DDR_TC.N_DDR_TC_INST[*].U_TC/allx_typeA_match_detection.ltlib_v1_0_3_allx_typeA_inst/DUT/u_srl_drive/CLK}]' of constraint 'set_false_path' uses inefficient query to find pin objects (see constraint position '49' in the Timing Constraint window in Vivado IDE). To reduce runtime, it is recommended to get the pins through the cell objects. Please refer to Using Constraints Guide (Constraints Efficiency). An example of optimal query is: get_pins -filter {REF_PIN_NAME=~yy*} -of_objects [get_cells -hierarchical xx*].
-Current XDC: /home/jotshawlinux/Downloads/frontier-inference-zcu104/vivado/kv_guard/kv_guard.gen/sources_1/bd/kv_guard_bd/ip/kv_guard_bd_ila_lifecycle_0/ila_v6_2/constraints/ila.xdc (Line: 72)
+Current XDC: <repo>/vivado/kv_guard/kv_guard.gen/sources_1/bd/kv_guard_bd/ip/kv_guard_bd_ila_lifecycle_0/ila_v6_2/constraints/ila.xdc (Line: 72)
 Related violations: <none>
 
 XDCB-5#3 Warning
 Runtime inefficient way to find pin objects  
 The option '-to : [get_pins -hierarchical -filter {NAME =~ *ila_core_inst/u_trig/N_DDR_TC.N_DDR_TC_INST[*].U_TC/yes_output_reg.dout_reg_reg/D}]' of constraint 'set_false_path' uses inefficient query to find pin objects (see constraint position '116' in the Timing Constraint window in Vivado IDE). To reduce runtime, it is recommended to get the pins through the cell objects. Please refer to Using Constraints Guide (Constraints Efficiency). An example of optimal query is: get_pins -filter {REF_PIN_NAME=~yy*} -of_objects [get_cells -hierarchical xx*].
-Current XDC: /home/jotshawlinux/Downloads/frontier-inference-zcu104/vivado/kv_guard/kv_guard.gen/sources_1/bd/kv_guard_bd/ip/kv_guard_bd_sila_axi_0/bd_0/ip/ip_0/ila_v6_2/constraints/ila.xdc (Line: 72)
+Current XDC: <repo>/vivado/kv_guard/kv_guard.gen/sources_1/bd/kv_guard_bd/ip/kv_guard_bd_sila_axi_0/bd_0/ip/ip_0/ila_v6_2/constraints/ila.xdc (Line: 72)
 Related violations: <none>
 
 XDCB-5#4 Warning
 Runtime inefficient way to find pin objects  
 The option '-to : [get_pins -hierarchical -filter {NAME =~ *ila_core_inst/u_trig/N_DDR_TC.N_DDR_TC_INST[*].U_TC/yes_output_reg.dout_reg_reg/D}]' of constraint 'set_false_path' uses inefficient query to find pin objects (see constraint position '49' in the Timing Constraint window in Vivado IDE). To reduce runtime, it is recommended to get the pins through the cell objects. Please refer to Using Constraints Guide (Constraints Efficiency). An example of optimal query is: get_pins -filter {REF_PIN_NAME=~yy*} -of_objects [get_cells -hierarchical xx*].
-Current XDC: /home/jotshawlinux/Downloads/frontier-inference-zcu104/vivado/kv_guard/kv_guard.gen/sources_1/bd/kv_guard_bd/ip/kv_guard_bd_ila_lifecycle_0/ila_v6_2/constraints/ila.xdc (Line: 72)
+Current XDC: <repo>/vivado/kv_guard/kv_guard.gen/sources_1/bd/kv_guard_bd/ip/kv_guard_bd_ila_lifecycle_0/ila_v6_2/constraints/ila.xdc (Line: 72)
 Related violations: <none>
 
 
