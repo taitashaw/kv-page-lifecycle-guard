@@ -22,7 +22,8 @@ and OCM excluded from its address space. The safe-reuse predicate, and the
 draining case the design exists to catch, are called out inside the fabric
 block.*
 
-![block design](docs/images/block-design.png)
+<img width="2000" height="1260" alt="image" src="https://github.com/user-attachments/assets/e157beed-1575-44c2-8e5e-09a2d7eaee26" />
+
 
 ***Figure 2.** The block design as built, which is Figure 1 in real IP. The
 guard's twenty-one named `dbg_*` ports fan out into `probe0` through `probe20`
