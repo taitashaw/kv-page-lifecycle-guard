@@ -16,6 +16,12 @@ MEASURED or NOT RUN.
 
 ![Architecture](docs/images/architecture.svg)
 
+***Figure 1.** End-to-end architecture. The PS writes control at `0xA000_0000`;
+the guard's read master reaches DDR through a 256 MB scratch aperture with QSPI
+and OCM excluded from its address space. The safe-reuse predicate, and the
+draining case the design exists to catch, are called out inside the fabric
+block.*
+
 ---
 
 ## Verified results
@@ -45,8 +51,6 @@ Strategy `Flow_PerfOptimized_high`, 29 s. Four debug cores reached the netlist:
 Debug hub: `C_CLK_INPUT_FREQ_HZ 187500000`, `C_ENABLE_CLK_DIVIDER false`,
 `C_USER_SCAN_CHAIN 1`. The divider must be **false** here; see the engineering log.
 
-![dashboard](<img width="2000" height="1170" alt="image" src="https://github.com/user-attachments/assets/fa9b4469-d529-4775-89a6-f4301d512651" />)
-
 ### Implementation on xczu7ev-ffvc1156-2-e, MEASURED
 
 Strategy `Performance_ExplorePostRoutePhysOpt`, 4 min 34 s.
@@ -72,7 +76,18 @@ Strategy `Performance_ExplorePostRoutePhysOpt`, 4 min 34 s.
 | Block RAM tiles | 26 | 312 | 8.33 |
 | URAM / DSPs | 0 | — | 0.00 |
 
+![dashboard](https://github.com/user-attachments/assets/fa9b4469-d529-4775-89a6-f4301d512651)
+
+***Figure 2.** Post-implementation dashboard. Utilisation by type (LUT 7%, FF 5%,
+LUTRAM 2%, BRAM 8%), power by rail totalling 3.628 W of which the PS is 2.642 W,
+timing at WNS 0.242 ns and WHS 0.010 ns, and the run table carrying both
+strategies with their elapsed times.*
+
 ![device view](docs/images/device-view.png)
+
+***Figure 3.** Implemented device view. Placed logic occupies clock regions
+X1Y0 to X1Y4 and X2Y2 to X3Y3, under 7% of the fabric. The isolated column at
+X0Y1 is the debug hub.*
 
 #### Where the resources actually go
 
@@ -160,6 +175,11 @@ result stands while latency measurement does not.
 
 ![simulation latency](docs/images/sim-latency.png)
 
+***Figure 4.** Simulation counters. `dbg_rd_latency` and `dbg_rd_latency_max`
+both read `0x0012`, the 18-cycle read latency the testbench responder produces.
+`dbg_sticky` reads `8f`. On hardware these read zero, because DDR never
+completes the read and the latency window never closes.*
+
 ### NOT RUN
 
 - DDR read completion. `dispatch` and `accept` reach 1 but `complete` stays 0
@@ -185,6 +205,12 @@ Every figure below is a Vivado capture of the design as it currently stands.
 | **Hardware** | **`ila-hardware.png`** | **`refcount=00`, `inflight` 01 to 08, `reuse_grant` flat at 0** |
 
 ![ila on hardware](docs/images/ila-hardware.png)
+
+***Figure 5.** The safety property on silicon, twenty-one named probes.
+`dbg_refcount` holds `00` while `dbg_inflight` steps `01` through `08`,
+`dbg_reuse_req` asserts on each, and **`dbg_reuse_grant` stays flat at `0` for
+all eight**. `dbg_sticky` bit 0 latches the refusal. Eight chances to release a
+page that was still being read, taken zero times.*
 
 The last row is the one that carries the result. Everything above it is
 supporting evidence that the thing captured is the thing that was designed.
