@@ -174,7 +174,8 @@ The lifecycle interlock does not depend on completion. `inflight` increments on
 ISSUE and the safe-reuse predicate is evaluated on that, which is why the safety
 result stands while latency measurement does not.
 
-![simulation latency](docs/images/sim-latency.png)
+<img width="2000" height="1117" alt="image" src="https://github.com/user-attachments/assets/9ad8c398-4000-4c90-87f0-0cc9ca20d90d" />
+
 
 ***Figure 4.** Simulation counters. `dbg_rd_latency` and `dbg_rd_latency_max`
 both read `0x0012`, the 18-cycle read latency the testbench responder produces.
