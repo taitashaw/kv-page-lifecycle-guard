@@ -54,20 +54,25 @@ foreach {run tag} {synth_1 schematic-synth impl_1 schematic-impl} {
   }
   say "### opening $run ($st) ..."
   if {[catch { open_run $run -name $run } e]} { say "###   open_run FAILED: $e" ; continue }
-  say "###   top level: [llength [get_cells -quiet]] cells, [llength [get_nets -quiet]] nets"
   catch { file delete $out/$tag.pdf }
+
+  # SCOPE MATTERS. The wrapper level holds only 2 cells (the BD instance and
+  # dbg_hub) and renders a near-empty diagram. The view worth publishing is the
+  # INTERIOR of the BD instance, which is what the GUI shows after descending
+  # into kv_guard_bd_i and what the figure captions describe.
+  set inner [get_cells -quiet ${bdname}_i/*]
+  if {[llength $inner] == 0} { set inner [get_cells -quiet */*] }
+  say "###   wrapper: [llength [get_cells -quiet]] cells"
+  say "###   interior of ${bdname}_i: [llength $inner] cells"
 
   # write_schematic renders whatever the schematic VIEWER holds, so the view has
   # to be created and populated first. Calling it on a bare open_run writes
   # nothing and reports success.
-  if {[catch { show_schematic [get_cells -quiet] } e]} { say "###   show_schematic: $e" }
-  foreach attempt {a b c} {
+  if {[catch { show_schematic $inner } e]} { say "###   show_schematic: $e" }
+  foreach attempt {a b} {
     if {$attempt eq "a"} {
       set rc [catch { write_schematic -force -format pdf -orientation landscape \
-                        -scope all $out/$tag.pdf } e]
-    } elseif {$attempt eq "b"} {
-      set rc [catch { write_schematic -force -format pdf \
-                        -cells [get_cells -quiet] $out/$tag.pdf } e]
+                        -cells $inner $out/$tag.pdf } e]
     } else {
       set rc [catch { write_schematic -force -format pdf $out/$tag.pdf } e]
     }
