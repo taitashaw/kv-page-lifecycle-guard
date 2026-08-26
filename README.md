@@ -109,7 +109,8 @@ strategies with their elapsed times.*
 X1Y0 to X1Y4 and X2Y2 to X3Y3, under 7% of the fabric. The isolated column at
 X0Y1 is the debug hub.*
 
-![post-implementation schematic](docs/images/schematic-impl.png)
+<img width="1500" height="945" alt="image" src="https://github.com/user-attachments/assets/748f6712-19ca-4f4d-b0c8-566188640bc6" />
+
 
 ***Figure 6.** The same netlist after implementation, ten cells and 1,407 nets.
 One cell and forty-nine nets fewer than Figure 3, because `opt_design` runs
