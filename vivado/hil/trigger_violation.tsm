@@ -1,0 +1,8 @@
+# Violation-only trigger. Fires if and only if a reuse is GRANTED
+# while a transfer is still in flight. In phase A this must not fire.
+state st_watch:
+  if (kv_guard_bd_i/kv_lifecycle_guard_0_dbg_reuse_grant == 1'b1 && kv_guard_bd_i/kv_lifecycle_guard_0_dbg_inflight != 6'b000000) then
+    trigger;
+  else
+    goto st_watch;
+  endif
