@@ -36,8 +36,8 @@
  },
  {
   "n": 6,
-  "src": "docs/images/schematic-impl.png",
-  "src_kind": "repo",
+  "src": "https://github.com/user-attachments/assets/748f6712-19ca-4f4d-b0c8-566188640bc6",
+  "src_kind": "external",
   "caption_sha": "cee8e7e55731d8b8",
   "caption_head": "The same netlist after implementation, ten cells and 1,407 nets. One c"
  },
