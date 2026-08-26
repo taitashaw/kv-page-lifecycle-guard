@@ -1,0 +1,150 @@
+{
+  "_note": "ADDENDUM 003. PRE-UNBLINDING: written while the run is live and the auditor refuses access. No performance row read.",
+  "run_id": "B-PRIMARY-20260824T133827Z",
+  "created_utc": "2026-08-24T15:07:09Z",
+  "plan_v1_sha256": "9c9305422e11ae5256bc9adaef280f394567ef0b4b6a3ee0be0f8cf2971efc05",
+  "plan_v1_unchanged": true,
+  "plan_v2_sha256": "3d12d33e4fb9e219a6290025ee3f5b439397807d11806e44796d2f4e3741718f",
+  "PROVENANCE": "plan v1 verified by sha256sum -c: OK, still 9c930542... The clarifications in v2 and v3 affected only the auditor, the metric NAME, and RTL notes. No experimental input changed.",
+  "METRIC_NAME_CORRECTED": {
+    "name": "offered-cohort on-time completion fraction",
+    "NOT_called": "goodput",
+    "formula": "S_p = |{ r in E : completion_p(r) <= deadline(r) }| / |E|",
+    "E": "{ r : not r.is_release and r.deadline <= H(c,s) }",
+    "denominator_failures": "rejected, unfinished AND late eligible requests all remain denominator failures",
+    "goodput_separate": "true goodput (completed requests per cycle) is reported SEPARATELY and is never substituted for S_p",
+    "reason": "prevents any accusation of switching between SLO attainment and throughput"
+  },
+  "HORIZON_INVARIANT": {
+    "correct_invariant": "H(c,s,p1) == H(c,s,p2) == ... == H(c,s,p9) for each configuration c and seed s",
+    "permissible": "the horizon MAY vary between configurations provided it is derived solely from the frozen trace or configuration",
+    "retraction": "I over-claimed that a variable horizon is inherently necessary. A fixed RELATIVE observation window could also be valid. The defensible statement is only that Sweep B uses a predeclared, configuration-dependent horizon derived independently of policy behaviour, and that validity requires identical horizons and eligible cohorts across all policies for each configuration and seed.",
+    "audit_scope": "the FINAL auditor checks all 8,640 configurations. The 16-config probe was a pre-launch smoke check and is NOT the evidence."
+  },
+  "COHORT_IDENTITY_FAILS_CLOSED": {
+    "retraction": "'zero assignments to req fields' does NOT prove policies cannot mutate the trace. Mutation could occur via aliases, helper functions, list replacement, in-place sorting, nested mutable fields or setattr. My earlier claim was stronger than the evidence.",
+    "model_unchanged": "the model is NOT being modified mid-run",
+    "audit_procedure": [
+      "regenerate the canonical eligible cohort from the FROZEN generator, configuration and seed",
+      "compare offered count, censored count and horizon across all nine policies",
+      "compare eligible request-ID hashes where available",
+      "if the records cannot establish identity, report cohort identity as NOT DIRECTLY VERIFIED rather than silently reducing the check to equal counts"
+    ],
+    "fail_closed": "equal counts are consistent with, but do not prove, identical cohorts. The auditor sets COHORT_UNVERIFIED and any verdict inherits and must state that limitation.",
+    "confirmatory_run_requirement": "use IMMUTABLE request objects and record the canonical cohort hash in EVERY policy result"
+  },
+  "EXECUTABLE_ANALYSIS_FROZEN": {
+    "file": "compute_verdict.py",
+    "sha256": "6df272b7964de9fdc56a814860958a92fa7a7ffcd365da5f625427c7d3d23522",
+    "auditor_sha256": "0d426d03bee2c9933024409847beed4e52423bb0c436d8928d89cb1b950a2f99",
+    "rule": "this is the ONLY code permitted to compute the Sweep B verdict, and the prose plan does not override it"
+  },
+  "PROGRESS_COUNT_CAVEAT": "any line count observed during the run is an APPARENT progress count only, until the final audit validates record counts, uniqueness and completeness.",
+  "PLAN_AUTHORITY": {
+    "v1": "PRESERVED and SUPERSEDED. sha256 9c9305422e11ae5256bc9adaef280f394567ef0b4b6a3ee0be0f8cf2971efc05",
+    "v2": "PRESERVED and SUPERSEDED. sha256 3d12d33e4fb9e219a6290025ee3f5b439397807d11806e44796d2f4e3741718f",
+    "v3": "THIS FILE. The SOLE AUTHORITATIVE interpretation plan.",
+    "enforcement": "compute_verdict.py verifies this file against SWEEP_B_ANALYSIS_PLAN_003.json.sha256 and refuses to run on mismatch.",
+    "wording": "Runtime simulation inputs were unchanged. ANALYSIS inputs were finalized before unblinding. The analysis code affects the verdict, so it IS an analysis input even though it cannot change a sweep record."
+  },
+  "THREE_STATE_OUTCOME": {
+    "_P0": "If cohort identity is not directly verified the experiment supports NEITHER a definitive positive NOR a branch-closing negative. My earlier text allowed both and was contradictory.",
+    "PASS": "apply the frozen gates; issue GO or NO-GO",
+    "INDETERMINATE_COHORT_IDENTITY": "report PROVISIONAL discovery regions only. NO GO and NO BRANCH CLOSURE.",
+    "FAIL": "suppress performance interpretation; the run is invalid",
+    "gating": "compute_verdict.py requires audit_artifact.json carrying the exact run id, the manifest sha256 and audit_status, and exits nonzero without a branch verdict otherwise."
+  },
+  "METRIC_FINAL": {
+    "S_p": "|{ r in E : completed_p(r) AND t_complete,p(r) <= d_SLO(r) }| / |E|",
+    "E": "{ r : NOT r.is_release AND d_SLO(r) <= H(c,s) }",
+    "explicit_completion_predicate": "prevents an unfinished request being counted and prevents d_issue being substituted for d_SLO",
+    "empty_cohort": "|E| == 0 is DEGENERATE and cannot qualify. Distinct from a nonempty cell whose baseline score is zero, which simply fails.",
+    "completion_throughput": "completed requests per cycle. NOT goodput.",
+    "byte_goodput": "G_bytes = completed payload bytes / observation cycles. Reported separately because request sizes differ.",
+    "boundary_arithmetic": "INTEGER cross-multiplication: 10*c_num*b_den >= 11*b_num*c_den. No float equality at the 10% boundary."
+  },
+  "VERDICT_ENGINE_VALIDATED": {
+    "fixtures": "tests/test_verdict_engine.py, 26 assertions, 0 failures",
+    "covers": [
+      "exactly 10% and just below",
+      "zero baseline",
+      "empty cohort |E|=0",
+      "3 of 5 versus 2 of 5 seeds",
+      "adjacent and non-adjacent loads",
+      "region splitting and multiple regions",
+      "throughput-retention failure",
+      "safety-trigger failure",
+      "indeterminate and failed audits"
+    ],
+    "note": "hashing proves stability, not correctness; these fixtures are the correctness evidence"
+  },
+  "OUTCOME_TABLE_FINAL": {
+    "_retired": "GO is retired. Sweep B is a DISCOVERY experiment and cannot authorize RTL or Vivado under ANY outcome.",
+    "PASS + regions": "DISCOVERY_PASS_CONFIRMATION_REQUIRED",
+    "PASS + none": "DISCOVERY_NO_GO_BRANCH_CLOSED",
+    "INDETERMINATE + regions": "PROVISIONAL_REGIONS_ONLY (threshold-matching provisional regions, NOT qualifying regions)",
+    "INDETERMINATE + none": "INCONCLUSIVE_BRANCH_REMAINS_OPEN (the branch is NOT closed)",
+    "FAIL": "RUN_INVALID",
+    "GO_TO_RTL_V1": "issued ONLY by a successful fresh-seed confirmation, never by this engine"
+  },
+  "SEED_ADJACENCY_AUTHORITATIVE": {
+    "rule": "|P_Li INTERSECT P_Li+1| >= 3",
+    "rejected_alternative": "each load independently reaching 3/5 with possibly different seeds",
+    "reason": "two cells can each pass 3/5 while sharing only one successful seed, which does not demonstrate a stable operating region",
+    "fixture": "tests/test_verdict_engine.py t_shared_seed_adjacency: identical subsets form a region; different 3-of-5 subsets sharing one seed do NOT; overlap of exactly 3 does; a subset change SPLITS the run"
+  },
+  "OBSERVATION_CYCLES_EXACT": {
+    "definition": "observation_cycles = H - start, with start == 0, i.e. exactly H",
+    "not": "H - start + 1",
+    "basis": "sim.run iterates `for cycle in range(horizon)`, covering cycles 0..H-1 inclusive",
+    "completed_byte_throughput": "ALL completed payload bytes / observation cycles",
+    "on_time_byte_goodput": "payload bytes of ON-TIME completions / observation cycles",
+    "never_conflated": true
+  },
+  "EVIDENCE_CHAIN_COVERS_THE_PROGRAM": {
+    "hashed": [
+      "audit_sweep_b.py",
+      "compute_verdict.py",
+      "tests/test_verdict_engine.py",
+      "SWEEP_B_ANALYSIS_PLAN_003.json"
+    ],
+    "embedded_in_artifact": "the auditor writes analysis_code_sha256 INTO audit_artifact.json",
+    "artifact_created": "atomically via os.replace, then its own sha256 recorded to audit_artifact.json.sha256",
+    "reason": "the chain must cover the PROGRAM that assigned PASS, not only the artifact it produced"
+  },
+  "_VERSION_NOTE": {
+    "this_file": "SWEEP_B_ANALYSIS_PLAN_004.json, the SOLE authoritative plan",
+    "v3_first_hash": "0e860d3f6422a010...",
+    "v3_second_hash": "3fe97d149544be2c...",
+    "DEFECT": "v3 was declared frozen at 0e860d3f, then EDITED IN PLACE and re-hashed to 3fe97d14. A frozen version number was silently reused. That does not invalidate the simulation, because analysis inputs cannot change generated records, but it breaks analysis provenance.",
+    "HONEST_LIMITATION": "The BYTES of v3 at 0e860d3f were NOT preserved before the in-place edit. Only its hash survives. v3 cannot be reconstructed and is recorded as superseded-and-lost, not superseded-and-archived.",
+    "what_changed_at_3fe97d14": "added OUTCOME_TABLE_FINAL, SEED_ADJACENCY_AUTHORITATIVE, OBSERVATION_CYCLES_EXACT and EVIDENCE_CHAIN_COVERS_THE_PROGRAM",
+    "performance_rows_read": "NONE at any point during any of these edits",
+    "rule_going_forward": "a frozen version number is never reused. Any change creates the next integer."
+  },
+  "HORIZON_BOUNDARY_RESOLVED": {
+    "defect": "eligibility used d_SLO <= H, but sim.run iterates range(H) and observes cycles 0..H-1, so a request with deadline exactly H could never be observed completing",
+    "measurement": "n_deadline_equal_horizon counted across ALL 8,640 configurations and 5 seeds",
+    "result": 0,
+    "consequence": "ZERO such requests exist. The formal notation becomes d_SLO < H. No request is excluded, no metric is recomputed and NO RESULT CHANGES.",
+    "artifact": "count_deadline_equal_horizon.py, N_DEADLINE_EQ_HORIZON.json"
+  },
+  "SEED_PAIRING_VERIFIED": {
+    "question": "does the same seed genuinely create PAIRED traces across load values?",
+    "sequence_fingerprint": "DIFFERS across loads in 96/96 groups, because the trace is sorted by arrival and arrival scales with load",
+    "composition_multiset_fingerprint": "IDENTICAL across loads in 96/96 groups",
+    "conclusion": "the request COMPOSITION (tenant, object type, key, class, bytes, held, release) is invariant for a fixed seed; only arrival times and therefore interleaving change, which is precisely what varying offered load is meant to change. Seeds DO pair.",
+    "caveat": "this establishes composition pairing, not identical scheduling pressure"
+  },
+  "REGION_RULE_FINAL": {
+    "rule": "P_R = INTERSECTION over all L in R of P_L, and |P_R| >= 3",
+    "supersedes": "the pairwise rule |P_Li ^ P_Li+1| >= 3",
+    "reason": "pairwise overlap does not survive a longer region: {1,2,3} / {1,2,3,4,5} / {3,4,5} has every adjacent pair at 3 but a region-wide intersection of only {3}",
+    "fixture": "the three-cell counterexample is in tests/test_verdict_engine.py"
+  },
+  "ANALYSIS_MANIFEST": {
+    "file": "ANALYSIS_MANIFEST.sha256",
+    "rule": "the verdict engine RECOMPUTES every analysis-file hash against this manifest and refuses on mismatch",
+    "not_self_attestation": "hashes embedded by the auditor are NOT trusted, because a modified auditor would embed its own new hash"
+  }
+}

@@ -1,0 +1,168 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 740" width="1080" height="740" font-family="Helvetica,Arial,sans-serif">
+  <defs>
+    <marker id="a" markerWidth="9" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#57606a"/>
+    </marker>
+    <marker id="ar" markerWidth="9" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#cf222e"/>
+    </marker>
+    <marker id="ag" markerWidth="9" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#1a7f37"/>
+    </marker>
+  </defs>
+
+  <rect width="1080" height="740" fill="#ffffff"/>
+  <text x="24" y="34" font-size="19" font-weight="700" fill="#1f2328">KV Page Lifecycle Guard — end to end</text>
+  <text x="24" y="54" font-size="12.5" fill="#57606a">Zynq UltraScale+ ZCU104 (xczu7ev-ffvc1156-2-e) · PL at 187.5 MHz · guard confined to a 256 MB scratch aperture</text>
+
+  <!-- ================= PS ================= -->
+  <rect x="24" y="80" width="250" height="250" rx="7" fill="#f6f8fa" stroke="#8250df" stroke-width="1.6"/>
+  <text x="36" y="102" font-size="13" font-weight="700" fill="#8250df">PROCESSING SYSTEM</text>
+  <text x="36" y="119" font-size="10.5" fill="#57606a">Cortex-A53 · serving engine</text>
+
+  <rect x="40" y="132" width="218" height="46" rx="5" fill="#fff" stroke="#8250df"/>
+  <text x="50" y="151" font-size="11.5" font-weight="600" fill="#1f2328">Paged attention allocator</text>
+  <text x="50" y="167" font-size="10" fill="#57606a">decides evict / admit / reuse</text>
+
+  <rect x="40" y="188" width="218" height="42" rx="5" fill="#fff" stroke="#8250df"/>
+  <text x="50" y="206" font-size="11.5" font-weight="600" fill="#1f2328">M_AXI_HPM0_FPD</text>
+  <text x="50" y="221" font-size="10" fill="#57606a">control writes → 0xA000_0000</text>
+
+  <rect x="40" y="240" width="218" height="42" rx="5" fill="#fff" stroke="#8250df"/>
+  <text x="50" y="258" font-size="11.5" font-weight="600" fill="#1f2328">S_AXI_HP0_FPD</text>
+  <text x="50" y="273" font-size="10" fill="#57606a">guard's read path → DDR4</text>
+
+  <rect x="40" y="292" width="218" height="26" rx="4" fill="#fff3cd" stroke="#9a6700"/>
+  <text x="50" y="309" font-size="10" fill="#9a6700">pl_clk0 crosses PS-PL isolation wall</text>
+
+  <!-- ================= PL ================= -->
+  <rect x="310" y="80" width="500" height="470" rx="7" fill="#f6f8fa" stroke="#0969da" stroke-width="1.6"/>
+  <text x="324" y="102" font-size="13" font-weight="700" fill="#0969da">PROGRAMMABLE LOGIC</text>
+  <text x="324" y="119" font-size="10.5" fill="#57606a">kv_lifecycle_guard · 4.00% LUT · 2.73% FF · 0 DSP</text>
+
+  <!-- guard box -->
+  <rect x="326" y="132" width="468" height="284" rx="6" fill="#fff" stroke="#0969da" stroke-width="1.3"/>
+  <text x="338" y="152" font-size="12" font-weight="700" fill="#1f2328">lifecycle_guard_top</text>
+
+  <rect x="340" y="164" width="205" height="58" rx="5" fill="#ddf4ff" stroke="#0969da"/>
+  <text x="350" y="182" font-size="11" font-weight="700" fill="#0969da">page_state_lut</text>
+  <text x="350" y="197" font-size="9.5" fill="#1f2328">atomic six-event transitions</text>
+  <text x="350" y="211" font-size="9.5" fill="#1f2328">safe-reuse predicate</text>
+
+  <rect x="560" y="164" width="220" height="58" rx="5" fill="#ddf4ff" stroke="#0969da"/>
+  <text x="570" y="182" font-size="11" font-weight="700" fill="#0969da">axi_read_manager</text>
+  <text x="570" y="197" font-size="9.5" fill="#1f2328">AR issue · first-beat signature</text>
+  <text x="570" y="211" font-size="9.5" fill="#1f2328">compare · RLAST completion</text>
+
+  <rect x="340" y="234" width="205" height="52" rx="5" fill="#ddf4ff" stroke="#0969da"/>
+  <text x="350" y="252" font-size="11" font-weight="700" fill="#0969da">axi_lite_regs</text>
+  <text x="350" y="267" font-size="9.5" fill="#1f2328">CTRL · window · CMD · counters</text>
+  <text x="350" y="280" font-size="9.5" fill="#57606a">CTRL[4] = sig_check_en</text>
+
+  <rect x="560" y="234" width="220" height="52" rx="5" fill="#ddf4ff" stroke="#0969da"/>
+  <text x="570" y="252" font-size="11" font-weight="700" fill="#0969da">tag_tracker</text>
+  <text x="570" y="267" font-size="9.5" fill="#1f2328">per-tag outstanding, max 2</text>
+  <text x="570" y="280" font-size="9.5" fill="#57606a">holds on same-cycle acc+cmp</text>
+
+  <!-- predicate -->
+  <rect x="340" y="298" width="440" height="46" rx="5" fill="#dafbe1" stroke="#1a7f37" stroke-width="1.4"/>
+  <text x="352" y="316" font-size="11" font-weight="700" fill="#1a7f37">SAFE-REUSE PREDICATE — all four, or reuse is refused</text>
+  <text x="352" y="334" font-size="11" font-family="ui-monospace,Menlo,monospace" fill="#1f2328">refcount==0 &amp;&amp; reservation==0 &amp;&amp; inflight==0 &amp;&amp; !fill_pending</text>
+
+  <rect x="340" y="356" width="440" height="46" rx="5" fill="#ffebe9" stroke="#cf222e" stroke-width="1.4"/>
+  <text x="352" y="374" font-size="11" font-weight="700" fill="#cf222e">THE CASE THIS EXISTS TO CATCH — "draining"</text>
+  <text x="352" y="392" font-size="10.5" fill="#1f2328">refcount==0 but inflight&gt;0. A refcount-only check calls this frame free. It is not.</text>
+
+  <!-- ILA -->
+  <rect x="326" y="430" width="230" height="104" rx="6" fill="#fff" stroke="#8250df" stroke-width="1.3"/>
+  <text x="338" y="450" font-size="12" font-weight="700" fill="#8250df">ILA · 196 bits × 2048</text>
+  <text x="338" y="468" font-size="9.5" fill="#1f2328">[7:0] refcount   [15:8] reservation</text>
+  <text x="338" y="482" font-size="9.5" fill="#1f2328">[21:16] inflight [25:22] fill_pending</text>
+  <text x="338" y="496" font-size="9.5" fill="#1f2328">[41:26] generation / expected</text>
+  <text x="338" y="510" font-size="9.5" font-weight="700" fill="#cf222e">[66] reuse_grant  ← trigger here</text>
+  <text x="338" y="524" font-size="9.5" fill="#1f2328">[67] reuse_refused [69] stale</text>
+
+  <!-- JTAG AXI -->
+  <rect x="574" y="430" width="220" height="104" rx="6" fill="#fff" stroke="#8250df" stroke-width="1.3"/>
+  <text x="586" y="450" font-size="12" font-weight="700" fill="#8250df">JTAG-to-AXI master</text>
+  <text x="586" y="468" font-size="9.5" fill="#1f2328">drives the guard directly,</text>
+  <text x="586" y="482" font-size="9.5" fill="#1f2328">bypassing the PS entirely</text>
+  <text x="586" y="500" font-size="9.5" fill="#57606a">create_hw_axi_txn</text>
+  <text x="586" y="514" font-size="9.5" fill="#57606a">→ 0xA000_0000</text>
+
+  <!-- ================= DDR ================= -->
+  <rect x="846" y="80" width="210" height="250" rx="7" fill="#f6f8fa" stroke="#1a7f37" stroke-width="1.6"/>
+  <text x="858" y="102" font-size="13" font-weight="700" fill="#1a7f37">DDR4 (PS hardened)</text>
+  <text x="858" y="119" font-size="10.5" fill="#57606a">2 GB · 19.2 GB/s</text>
+
+  <rect x="862" y="132" width="178" height="66" rx="5" fill="#dafbe1" stroke="#1a7f37"/>
+  <text x="872" y="151" font-size="11" font-weight="700" fill="#1a7f37">SCRATCH APERTURE</text>
+  <text x="872" y="167" font-size="10" font-family="ui-monospace,Menlo,monospace" fill="#1f2328">0x7000_0000</text>
+  <text x="872" y="181" font-size="10" font-family="ui-monospace,Menlo,monospace" fill="#1f2328">+256 MB   (only)</text>
+  <text x="872" y="194" font-size="9" fill="#57606a">KV pages live here</text>
+
+  <rect x="862" y="208" width="178" height="52" rx="5" fill="#ffebe9" stroke="#cf222e" stroke-dasharray="4 3"/>
+  <text x="872" y="226" font-size="10.5" font-weight="700" fill="#cf222e">EXCLUDED</text>
+  <text x="872" y="241" font-size="9.5" fill="#1f2328">QSPI boot flash (512 MB)</text>
+  <text x="872" y="254" font-size="9.5" fill="#1f2328">LPS OCM (16 MB)</text>
+
+  <rect x="862" y="270" width="178" height="46" rx="5" fill="#fff" stroke="#57606a" stroke-dasharray="3 3"/>
+  <text x="872" y="288" font-size="9.5" fill="#57606a">Kernel memory is NOT in the</text>
+  <text x="872" y="301" font-size="9.5" fill="#57606a">guard's address space at all.</text>
+
+  <!-- ================= arrows =================
+     Routing rules applied:
+       - every segment is horizontal or vertical
+       - routes stay inside clear channels: x 274-310 (PS|PL), x 810-846 (PL|DDR),
+         x 310-326 (PL left margin), y 550-620 (below PL, above the strip)
+       - no two arrows terminate on the same point
+       - labels sit inside a channel, never across a box border
+-->
+
+  <!-- PS control write -> axi_lite_regs, entering high on the left edge -->
+  <polyline points="258,205 296,205 296,248 336,248" fill="none"
+            stroke="#57606a" stroke-width="1.8" marker-end="url(#a)"/>
+  <text x="276" y="222" font-size="8.5" fill="#57606a">AXI-Lite</text>
+
+  <!-- JTAG-AXI control write -> axi_lite_regs, entering LOW so the two
+       control masters do not share an arrowhead -->
+  <polyline points="600,534 600,545 318,545 318,274 336,274" fill="none"
+            stroke="#8250df" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#a)"/>
+  <text x="330" y="562" font-size="8.5" fill="#8250df">JTAG-AXI reaches axi_lite_regs on the same aperture as the PS</text>
+
+  <!-- guard read request -> DDR scratch aperture -->
+  <polyline points="780,193 820,193 820,165 860,165" fill="none"
+            stroke="#1a7f37" stroke-width="1.8" marker-end="url(#ag)"/>
+  <text x="812" y="186" font-size="8" fill="#1a7f37">AXI4 rd</text>
+
+  <!-- return path: guard read data via SmartConnect and S_AXI_HP0_FPD -->
+  <polyline points="258,265 302,265 302,600 951,600 951,332" fill="none"
+            stroke="#1a7f37" stroke-width="1.8" marker-end="url(#ag)"/>
+  <text x="430" y="594" font-size="9" fill="#1a7f37">guard read path: SmartConnect -&gt; S_AXI_HP0_FPD -&gt; DDR controller</text>
+
+  <!-- predicate -> the draining case it exists to catch -->
+  <line x1="441" y1="344" x2="441" y2="356" stroke="#cf222e" stroke-width="1.8" marker-end="url(#ar)"/>
+
+  <!-- guard state -> ILA probe -->
+  <line x1="441" y1="402" x2="441" y2="430" stroke="#8250df" stroke-width="1.8" marker-end="url(#a)"/>
+  <text x="447" y="422" font-size="8.5" fill="#8250df">dbg_probe[195:0]</text>
+
+<!-- ================= lifecycle strip ================= -->
+  <rect x="24" y="620" width="1032" height="76" rx="7" fill="#f6f8fa" stroke="#d1d9e0"/>
+  <text x="36" y="641" font-size="12" font-weight="700" fill="#1f2328">SIX-EVENT PAGE LIFECYCLE — counters are never overloaded</text>
+  <g font-size="10" fill="#1f2328">
+    <rect x="36" y="652" width="152" height="34" rx="4" fill="#fff" stroke="#1a7f37"/>
+    <text x="46" y="668" font-weight="700">ACQUIRE</text><text x="46" y="681" fill="#57606a">refcount + 1</text>
+    <rect x="200" y="652" width="152" height="34" rx="4" fill="#fff" stroke="#0969da"/>
+    <text x="210" y="668" font-weight="700">ADMIT</text><text x="210" y="681" fill="#57606a">reservation + 1</text>
+    <rect x="364" y="652" width="152" height="34" rx="4" fill="#fff" stroke="#0969da"/>
+    <text x="374" y="668" font-weight="700">ISSUE</text><text x="374" y="681" fill="#57606a">rsv − 1, inflight + 1</text>
+    <rect x="528" y="652" width="152" height="34" rx="4" fill="#fff" stroke="#0969da"/>
+    <text x="538" y="668" font-weight="700">COMPLETE</text><text x="538" y="681" fill="#57606a">inflight − 1</text>
+    <rect x="692" y="652" width="152" height="34" rx="4" fill="#fff" stroke="#1a7f37"/>
+    <text x="702" y="668" font-weight="700">RELEASE</text><text x="702" y="681" fill="#57606a">refcount − 1</text>
+    <rect x="856" y="652" width="184" height="34" rx="4" fill="#fff" stroke="#9a6700"/>
+    <text x="866" y="668" font-weight="700">CANCEL</text><text x="866" y="681" fill="#57606a">rsv − 1, pre-issue only</text>
+  </g>
+  <text x="36" y="712" font-size="9.5" fill="#57606a">ADMIT deliberately does not create a logical reference. Generation validates a descriptor, which is a different question from whether a frame is free.</text>
+</svg>

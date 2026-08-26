@@ -1,0 +1,49 @@
+{
+  "_note": "ADDENDUM to SWEEP_B_ANALYSIS_PLAN.json. Still PRE-UNBLINDING: written while the run is live and the auditor refuses access. No performance row read.",
+  "run_id": "B-PRIMARY-20260824T133827Z",
+  "created_utc": "2026-08-24T14:51:24Z",
+  "previous_plan_sha256": "9c9305422e11ae5256bc9adaef280f394567ef0b4b6a3ee0be0f8cf2971efc05",
+  "PRIMARY_METRIC_FROZEN": {
+    "name": "on-time fraction of eligible offered requests",
+    "formula": "G_p = (mandatory requests COMPLETED by their d_SLO) / (eligible offered requests)",
+    "denominator": "eligible offered = non-release requests with deadline <= absolute horizon, computed from the COMMON trace before any policy runs",
+    "numerator": "Result.on_time",
+    "NOT_a_rate": "This is a FRACTION, not per-cycle goodput. It does NOT divide by the measurement duration.",
+    "no_switching": "goodput, on-time fraction and admitted throughput are NOT interchangeable. Only this formula is used for the primary gate. 'admitted' is an intermediate policy outcome and is NEVER a numerator or denominator.",
+    "correction": "An earlier statement that 'only the numerator moves' was WRONG. 'admitted' moves across policies too, but 'admitted' is not the numerator. The numerator is on_time; the denominator is the common eligible cohort."
+  },
+  "HORIZON_RECONCILED": {
+    "question": "does H_absolute - T_measurement_start == 12000?",
+    "answer": "NO, and 12000 was never the sweep's horizon. 12000 is the horizon in tests/test_gm_mutations.py, a different context that was quoted in error.",
+    "measurement_start": 0,
+    "horizon_semantics": "absolute end cycle; sim.run loops range(horizon), so duration == absolute end",
+    "rule": "derived per trace as latest completion deadline plus one declared L_down,max",
+    "requirement_that_binds": "identical for every policy on the same trace",
+    "verified": "16 configurations x 9 policies, all identical per configuration",
+    "why_not_a_global_constant": "configurations have different arrival spans; a shared constant would censor them unevenly and make the cohorts incomparable"
+  },
+  "CONTIGUOUS_REGION_DEFINITION": {
+    "step_1_cell": "a CELL is (frames, ws_ratio, nonevict, spec_share, slack, load). Within a cell, aggregate over the 5 frozen seeds FIRST: the cell PASSES iff >= 3 of 5 seeds satisfy every discovery requirement.",
+    "step_2_region": "a REGION is a maximal set of PASSING cells that are identical on ALL non-load axes and occupy >= 2 ADJACENT values of the predeclared load ordering [0.70, 0.80, 0.90, 0.95].",
+    "adjacency": "adjacent means consecutive indices in that ordering; 0.70 and 0.90 are NOT adjacent",
+    "step_3_forward": "EVERY region satisfying step 2 is forwarded to confirmation.",
+    "forbidden": "selecting a region because it has the largest observed gain, or any other post-hoc criterion",
+    "ordering_is_binding": "seed aggregation happens BEFORE the adjacency test, never after"
+  },
+  "RTL_GENERATION_REUSE_ORDERING": [
+    "1. prove evictable: refcount==0 && reservation==0 && inflight==0 && !fill_pending",
+    "2. invalidate and unpublish the old mapping",
+    "3. increment generation",
+    "4. initialize replacement state",
+    "5. publish the new valid mapping",
+    "INVARIANT: there must be NO cycle in which a replacement is visible carrying the previous generation.",
+    "note: generation matching is NOT an eviction condition. It validates descriptor_valid = entry.phys_idx == d.phys_idx && entry.generation == d.expected_generation."
+  ],
+  "CENSORING_POLICY_INDEPENDENCE": {
+    "verified_structurally": "policies receive req read-only; zero assignments to req fields in any of the 9 policies and none in sim.run",
+    "verified_per_configuration": "the auditor now requires offered, censored, horizon and an eligible-cohort hash to be identical across all 9 policies in EVERY configuration, not on one sample trace",
+    "limitation": "this run's records may not carry an eligible_hash field; where absent the auditor falls back to offered/censored/horizon and says so. The confirmatory run must emit the hash."
+  },
+  "PROVENANCE_LIMITATION": "A local plan plus a detached local hash fixes the BYTES but does not independently prove WHEN it was created. This is a PRE-UNBLINDING PROCEDURAL FREEZE, not a cryptographically timestamped one. It is not externally timestamped and not in a witnessed append-only record.",
+  "_heredoc_note": "A shell heredoc executed two backtick-quoted words while writing the first copy of this file, blanking them from the 'correction' field. Caught by reading the file back rather than trusting the write. Repaired before hashing; the superseded hash was de1901ebab092d0d04c983ee069143f7772ed4de8e1e4c9fef7682a36f8578e8"
+}

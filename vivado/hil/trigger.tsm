@@ -1,0 +1,10 @@
+# Trigger state machine, generated. Fires on the violation OR the
+# expected refusal, so every capture is self-classifying.
+state st_watch:
+  if (kv_guard_bd_i/kv_lifecycle_guard_0_dbg_reuse_grant == 1'b1 && kv_guard_bd_i/kv_lifecycle_guard_0_dbg_inflight != 6'b000000) then
+    trigger;
+  elseif (kv_guard_bd_i/kv_lifecycle_guard_0_dbg_reuse_refused == 1'b1) then
+    trigger;
+  else
+    goto st_watch;
+  endif

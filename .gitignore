@@ -1,0 +1,43 @@
+# Vivado project trees and run outputs: regenerable from vivado/stages/*.tcl
+vivado/kv_guard/
+vivado/lifecycle_guard/
+vivado/.Xil/
+vivado/*.jou
+vivado/*.log
+vivado/*.stdout
+vivado/*.xsa
+vivado/*.ila
+.Xil/
+*.jou
+*.log
+*.str
+
+# Build artifacts. The bitstream is 19 MB and is reproducible from the flow.
+*.bit
+*.ltx
+*.dcp
+*.bin
+
+# Simulation outputs
+xsim.dir/
+*.wdb
+*.pb
+*.vcd
+webtalk*
+.cxl.*
+
+# Python
+__pycache__/
+*.pyc
+model/runs/
+
+# Local scratch
+scratch/
+
+# Internal drafts, not for the public repo
+LINKEDIN_POST_DRAFT.md
+*.bak
+
+# Quarantined Sweep A model. Superseded by model/gm/ and kept locally only so a
+# reader cannot mistake it for the current golden model.
+model/golden/

@@ -1,0 +1,50 @@
+{
+  "_note": "PRE-UNBLINDING ANALYSIS FREEZE. Written and hashed while the run is live and the auditor still refuses access. No performance row has been read.",
+  "run_id": "B-PRIMARY-20260824T133827Z",
+  "created_utc": "2026-08-24T14:22:31Z",
+  "previous_amendment_sha256": "3ad74c389496d6c53853ac317ecbf3e7da500a3f79bcf08b6595b4e7120a3065",
+
+  "primary_candidate": "integrated",
+  "primary_baselines": ["tuned_axi_qos", "separable_conservative_guard"],
+  "negative_control": "independent_dual_guard",
+  "primary_metric": "offered-load on-time goodput = on_time / offered",
+
+  "discovery_requirements": {
+    "relative_goodput_improvement_pct": 10,
+    "completed_throughput_retention_pct": 90,
+    "adjacent_load_points_min": 2,
+    "qualifying_seeds_min": 3,
+    "qualifying_seeds_of": 5,
+    "safety_accounting_violations": 0,
+    "rejection_only_advantage": false,
+    "_binding": "These gates bind the INTERPRETATION OF SWEEP B, not only the confirmation."
+  },
+
+  "row_handling": {
+    "row_exclusions": "none",
+    "coverage_use": "stratification only, never eligibility",
+    "censored_cohort": "derived from the common OFFERED request trace before any policy runs; verified identical across all 9 policies (offered, censored and horizon all single-valued)",
+    "zero_baseline_rule": "if baseline on_time_per_offered == 0 and candidate > 0, relative gain is recorded as +inf and the cell is REPORTED but does NOT satisfy the >=10% gate; it is flagged degenerate",
+    "tie_rule": "relative gain exactly 10.000% counts as satisfying >= 10%; comparisons use >= not >",
+    "both_zero_rule": "if both are 0, relative gain is 0.0 and the cell fails"
+  },
+
+  "region_selection": {
+    "rule": "REPORT EVERY qualifying contiguous region and freeze ALL of them for confirmation.",
+    "explicitly_forbidden": "selecting the single largest observed gain, or any post-hoc choice among qualifying regions",
+    "contiguity": "adjacent in the load axis (0.70,0.80,0.90,0.95) with all other axes held equal"
+  },
+
+  "confirmation": {
+    "region": "the exact discovered region, parameters unchanged",
+    "seeds_min": 20,
+    "seeds_must_be": "fresh, previously unused, deterministic",
+    "comparison": "paired, against BOTH primary baselines",
+    "confidence_interval": "paired CI on the improvement must EXCLUDE ZERO",
+    "gates": "all primary gates reapplied unchanged",
+    "parameter_changes": "none permitted",
+    "manifest_requirement": "every threshold goes DIRECTLY into the confirmatory run's immutable manifest, not into prose"
+  },
+
+  "integrity_precondition": "No verdict may be computed unless audit_sweep_b.py passes: 77760 records, 77760 unique keys, zero missing/duplicate/malformed, 8640 per policy, 9 per config, all 11 hashes matching, canonical sort before SHA-256."
+}

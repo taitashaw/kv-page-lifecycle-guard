@@ -1,0 +1,35 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025
+| Date         : Mon Aug 24 16:45:00 2026
+| Host         : jotshawlinux-Legion running 64-bit Ubuntu 24.04.4 LTS
+| Command      : report_utilization -hierarchical -file /home/jotshawlinux/Downloads/frontier-inference-zcu104/rtl/v1/synth_ooc/utilization_hier.rpt
+| Design       : lifecycle_guard_top
+| Device       : xczu7ev-ffvc1156-2-e
+| Speed File   : -2
+| Design State : Synthesized
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++-------------------------+---------------------------------+------------+------------+---------+------+------+--------+--------+------+------------+
+|         Instance        |              Module             | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs | RAMB36 | RAMB18 | URAM | DSP Blocks |
++-------------------------+---------------------------------+------------+------------+---------+------+------+--------+--------+------+------------+
+| lifecycle_guard_top     |                           (top) |       4980 |       4872 |     108 |    0 | 5862 |      0 |      0 |    0 |          0 |
+|   (lifecycle_guard_top) |                           (top) |          6 |          6 |       0 |    0 |  193 |      0 |      0 |    0 |          0 |
+|   u_evt_fifo            | guard_sync_fifo__parameterized0 |         65 |         25 |      40 |    0 |   10 |      0 |      0 |    0 |          0 |
+|   u_lut                 |                  page_state_lut |       2275 |       2275 |       0 |    0 | 3039 |      0 |      0 |    0 |          0 |
+|   u_rdm                 |                axi_read_manager |        484 |        484 |       0 |    0 | 1532 |      0 |      0 |    0 |          0 |
+|   u_regs                |                   axi_lite_regs |       1707 |       1707 |       0 |    0 |  585 |      0 |      0 |    0 |          0 |
+|   u_req_fifo            |                 guard_sync_fifo |        301 |        233 |      68 |    0 |    8 |      0 |      0 |    0 |          0 |
+|   u_tags                |                     tag_tracker |        182 |        182 |       0 |    0 |  495 |      0 |      0 |    0 |          0 |
++-------------------------+---------------------------------+------------+------------+---------+------+------+--------+--------+------+------------+
+
+

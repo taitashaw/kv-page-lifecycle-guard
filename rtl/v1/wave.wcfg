@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state/>
+   <db_ref_list>
+      <db_ref path="tb_snap.wdb" id="1"/>
+   </db_ref_list>
+   <zoom_setting><ZoomStartTime time="0fs"/><ZoomEndTime time="560000ps"/></zoom_setting>
+   <column_width_setting><NAME_COLUMN_WIDTH column_width="260"/><VALUE_COLUMN_WIDTH column_width="130"/></column_width_setting>
+   <WVObjectSize size="29"/>
+   <wvobject fp_name="group_clk" type="group"><obj_property name="label">clock and reset</obj_property><obj_property name="DisplayName">label</obj_property>
+     <wvobject fp_name="/tb_page_state_lut/clk" type="logic"><obj_property name="ElementShortName">clk</obj_property></wvobject>
+     <wvobject fp_name="/tb_page_state_lut/rst_n" type="logic"><obj_property name="ElementShortName">rst_n</obj_property></wvobject>
+     <wvobject fp_name="/tb_page_state_lut/unsafe" type="logic"><obj_property name="ElementShortName">UNSAFE BYPASS</obj_property></wvobject>
+   </wvobject>
+   <wvobject fp_name="group_state" type="group"><obj_property name="label">LIFECYCLE STATE, slot 7</obj_property><obj_property name="DisplayName">label</obj_property>
+     <wvobject fp_name="/tb_page_state_lut/dut/ram[7].refcount" type="array"><obj_property name="ElementShortName">refcount</obj_property><obj_property name="Radix">UNSIGNEDDECRADIX</obj_property></wvobject>
+     <wvobject fp_name="/tb_page_state_lut/dut/ram[7].reservation" type="array"><obj_property name="ElementShortName">reservation</obj_property><obj_property name="Radix">UNSIGNEDDECRADIX</obj_property></wvobject>
+     <wvobject fp_name="/tb_page_state_lut/dut/ram[7].inflight" type="array"><obj_property name="ElementShortName">inflight</obj_property><obj_property name="Radix">UNSIGNEDDECRADIX</obj_property></wvobject>
+     <wvobject fp_name="/tb_page_state_lut/dut/ram[7].fill_pending" type="array"><obj_property name="ElementShortName">fill_pending</obj_property><obj_property name="Radix">UNSIGNEDDECRADIX</obj_property></wvobject>
+     <wvobject fp_name="/tb_page_state_lut/dut/ram[7].generation" type="array"><obj_property name="ElementShortName">generation</obj_property><obj_property name="Radix">UNSIGNEDDECRADIX</obj_property></wvobject>
+   </wvobject>
+   <wvobject fp_name="group_interlock" type="group"><obj_property name="label">THE INTERLOCK</obj_property><obj_property name="DisplayName">label</obj_property>
+     <wvobject fp_name="/tb_page_state_lut/reuse_req" type="logic"><obj_property name="ElementShortName">reuse_request</obj_property></wvobject>
+     <wvobject fp_name="/tb_page_state_lut/refused" type="logic"><obj_property name="ElementShortName">REUSE REFUSED</obj_property></wvobject>
+     <wvobject fp_name="/tb_page_state_lut/grant" type="logic"><obj_property name="ElementShortName">reuse_grant</obj_property></wvobject>
+     <wvobject fp_name="/tb_page_state_lut/blocked" type="logic"><obj_property name="ElementShortName">unsafe_reuse_blocked</obj_property></wvobject>
+     <wvobject fp_name="/tb_page_state_lut/committed" type="logic"><obj_property name="ElementShortName">UNSAFE REUSE COMMITTED</obj_property></wvobject>
+     <wvobject fp_name="/tb_page_state_lut/stale" type="logic"><obj_property name="ElementShortName">stale_descriptor</obj_property></wvobject>
+   </wvobject>
+   <wvobject fp_name="group_cnt" type="group"><obj_property name="label">counters</obj_property><obj_property name="DisplayName">label</obj_property>
+     <wvobject fp_name="/tb_page_state_lut/c_ref" type="array"><obj_property name="ElementShortName">cnt_refused</obj_property><obj_property name="Radix">UNSIGNEDDECRADIX</obj_property></wvobject>
+     <wvobject fp_name="/tb_page_state_lut/c_stale" type="array"><obj_property name="ElementShortName">cnt_stale</obj_property><obj_property name="Radix">UNSIGNEDDECRADIX</obj_property></wvobject>
+     <wvobject fp_name="/tb_page_state_lut/c_unsafe" type="array"><obj_property name="ElementShortName">cnt_unsafe_commit</obj_property><obj_property name="Radix">UNSIGNEDDECRADIX</obj_property></wvobject>
+   </wvobject>
+   <!-- PAYLOAD group: resolves against the tb_payload_corruption snapshot
+        (xsim pay_snap -gui -view wave.wcfg). Three scenarios run in sequence on
+        three distinct frames, so one screenshot shows all of them:
+          frame 3  SAFE                interlock ON,  generation ON  -> 5A5A5A5A
+          frame 11 UNSAFE_NO_INTERLOCK interlock OFF, generation ON  -> 5A5A5A5A
+          frame 20 UNSAFE_NAIVE        interlock OFF, generation OFF -> A5A5A5A5
+        payload_mismatch rises ONLY in the third scenario, and only when BOTH
+        bypass controls are asserted together. -->
+   <wvobject fp_name="group_payload" type="group"><obj_property name="label">payload</obj_property><obj_property name="DisplayName">label</obj_property>
+     <wvobject fp_name="/tb_payload_corruption/unsafe" type="logic"><obj_property name="ElementShortName">BYPASS 1: interlock off (i_unsafe_bypass)</obj_property></wvobject>
+     <wvobject fp_name="/tb_payload_corruption/no_gen" type="logic"><obj_property name="ElementShortName">BYPASS 2: generation off (i_no_generation_check)</obj_property></wvobject>
+     <wvobject fp_name="/tb_payload_corruption/frame_buf[3]" type="array"><obj_property name="ElementShortName">frame_buf[3]  SAFE</obj_property><obj_property name="Radix">HEXRADIX</obj_property></wvobject>
+     <wvobject fp_name="/tb_payload_corruption/frame_buf[11]" type="array"><obj_property name="ElementShortName">frame_buf[11] UNSAFE_NO_INTERLOCK</obj_property><obj_property name="Radix">HEXRADIX</obj_property></wvobject>
+     <wvobject fp_name="/tb_payload_corruption/frame_buf[20]" type="array"><obj_property name="ElementShortName">frame_buf[20] UNSAFE_NAIVE</obj_property><obj_property name="Radix">HEXRADIX</obj_property></wvobject>
+     <wvobject fp_name="/tb_payload_corruption/payload_mismatch" type="logic"><obj_property name="ElementShortName">PAYLOAD MISMATCH</obj_property></wvobject>
+     <wvobject fp_name="/tb_payload_corruption/slot" type="array"><obj_property name="ElementShortName">scenario slot</obj_property><obj_property name="Radix">UNSIGNEDDECRADIX</obj_property></wvobject>
+     <wvobject fp_name="/tb_payload_corruption/phys" type="array"><obj_property name="ElementShortName">scenario phys</obj_property><obj_property name="Radix">UNSIGNEDDECRADIX</obj_property></wvobject>
+     <wvobject fp_name="/tb_payload_corruption/committed" type="logic"><obj_property name="ElementShortName">UNSAFE REUSE COMMITTED</obj_property></wvobject>
+     <wvobject fp_name="/tb_payload_corruption/refused" type="logic"><obj_property name="ElementShortName">REUSE REFUSED</obj_property></wvobject>
+     <wvobject fp_name="/tb_payload_corruption/stale" type="logic"><obj_property name="ElementShortName">stale_descriptor</obj_property></wvobject>
+   </wvobject>
+</wave_config>

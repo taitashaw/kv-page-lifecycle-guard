@@ -1,0 +1,1422 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version      : Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025
+| Date              : Mon Aug 24 16:45:13 2026
+| Host              : jotshawlinux-Legion running 64-bit Ubuntu 24.04.4 LTS
+| Command           : report_timing -delay_type max -max_paths 10 -nworst 10 -sort_by group -input_pins -file /home/jotshawlinux/Downloads/frontier-inference-zcu104/rtl/v1/synth_ooc/timing_worst.rpt
+| Design            : lifecycle_guard_top
+| Device            : xczu7ev-ffvc1156
+| Speed File        : -2  PRODUCTION 1.30 05-15-2022
+| Design State      : Synthesized
+| Temperature Grade : E
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (MET) :             1.358ns  (required time - arrival time)
+  Source:                 u_req_fifo/rptr_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_rdm/o_cnt_align_refused_reg[0]/CE
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (clk rise@5.000ns - clk rise@0.000ns)
+  Data Path Delay:        3.537ns  (logic 1.228ns (34.719%)  route 2.309ns (65.281%))
+  Logic Levels:           14  (CARRY8=4 LUT2=1 LUT3=2 LUT4=2 LUT5=1 LUT6=3 RAMD32=1)
+  Clock Path Skew:        -0.009ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.021ns = ( 5.021 - 5.000 ) 
+    Source Clock Delay      (SCD):    0.030ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk rise edge)        0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=6073, unset)         0.030     0.030    u_req_fifo/clk
+                         FDRE                                         r  u_req_fifo/rptr_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_FDRE_C_Q)         0.077     0.107 r  u_req_fifo/rptr_reg[1]/Q
+                         net (fo=118, unplaced)       0.238     0.345    u_req_fifo/mem_reg_0_7_70_83/ADDRE1
+                                                                      r  u_req_fifo/mem_reg_0_7_70_83/RAME/RADR1
+                         RAMD32 (Prop_RAMD32_RADR1_O)
+                                                      0.139     0.484 r  u_req_fifo/mem_reg_0_7_70_83/RAME/O
+                         net (fo=4, unplaced)         0.119     0.603    u_req_fifo/clk_0[75]
+                                                                      r  u_req_fifo/o_p_boundary_refused_i_19/I0
+                         LUT6 (Prop_LUT6_I0_O)        0.150     0.753 r  u_req_fifo/o_p_boundary_refused_i_19/O
+                         net (fo=6, unplaced)         0.208     0.961    u_req_fifo/o_p_boundary_refused_i_19_n_0
+                                                                      r  u_req_fifo/o_cnt_window_refused[15]_i_95/I2
+                         LUT4 (Prop_LUT4_I2_O)        0.037     0.998 r  u_req_fifo/o_cnt_window_refused[15]_i_95/O
+                         net (fo=1, unplaced)         0.023     1.021    u_req_fifo/o_cnt_window_refused[15]_i_95_n_0
+                                                                      r  u_req_fifo/o_cnt_window_refused_reg[15]_i_94/S[1]
+                         CARRY8 (Prop_CARRY8_S[1]_CO[7])
+                                                      0.197     1.218 r  u_req_fifo/o_cnt_window_refused_reg[15]_i_94/CO[7]
+                         net (fo=1, unplaced)         0.005     1.223    u_req_fifo/o_cnt_window_refused_reg[15]_i_94_n_0
+                                                                      r  u_req_fifo/o_cnt_window_refused_reg[15]_i_93/CI
+                         CARRY8 (Prop_CARRY8_CI_O[1])
+                                                      0.076     1.299 r  u_req_fifo/o_cnt_window_refused_reg[15]_i_93/O[1]
+                         net (fo=2, unplaced)         0.184     1.483    u_regs/req_end[16]
+                                                                      r  u_regs/o_cnt_window_refused[15]_i_49/I3
+                         LUT4 (Prop_LUT4_I3_O)        0.068     1.551 f  u_regs/o_cnt_window_refused[15]_i_49/O
+                         net (fo=1, unplaced)         0.245     1.796    u_regs/o_cnt_window_refused[15]_i_49_n_0
+                                                                      f  u_regs/o_cnt_window_refused_reg[15]_i_16/DI[2]
+                         CARRY8 (Prop_CARRY8_DI[2]_CO[7])
+                                                      0.117     1.913 f  u_regs/o_cnt_window_refused_reg[15]_i_16/CO[7]
+                         net (fo=1, unplaced)         0.005     1.918    u_regs/o_cnt_window_refused_reg[15]_i_16_n_0
+                                                                      f  u_regs/o_cnt_window_refused_reg[15]_i_6/CI
+                         CARRY8 (Prop_CARRY8_CI_CO[4])
+                                                      0.092     2.010 f  u_regs/o_cnt_window_refused_reg[15]_i_6/CO[4]
+                         net (fo=1, unplaced)         0.134     2.144    u_regs/u_rdm/g_window0
+                                                                      f  u_regs/o_cnt_window_refused[15]_i_3/I1
+                         LUT3 (Prop_LUT3_I1_O)        0.053     2.197 r  u_regs/o_cnt_window_refused[15]_i_3/O
+                         net (fo=3, unplaced)         0.192     2.389    u_req_fifo/o_cnt_tag_conflict_reg[0]_0
+                                                                      r  u_req_fifo/o_p_tag_conflict_i_2/I4
+                         LUT5 (Prop_LUT5_I4_O)        0.038     2.427 r  u_req_fifo/o_p_tag_conflict_i_2/O
+                         net (fo=2, unplaced)         0.186     2.613    u_req_fifo/o_p_tag_conflict_i_2_n_0
+                                                                      r  u_req_fifo/issue_desc[transaction_tag][3]_i_3/I1
+                         LUT3 (Prop_LUT3_I1_O)        0.038     2.651 f  u_req_fifo/issue_desc[transaction_tag][3]_i_3/O
+                         net (fo=2, unplaced)         0.186     2.837    u_req_fifo/issue_desc[transaction_tag][3]_i_3_n_0
+                                                                      f  u_req_fifo/o_cnt_window_refused[15]_i_4/I3
+                         LUT6 (Prop_LUT6_I3_O)        0.038     2.875 f  u_req_fifo/o_cnt_window_refused[15]_i_4/O
+                         net (fo=4, unplaced)         0.198     3.073    u_regs/o_cnt_window_refused_reg[0]
+                                                                      f  u_regs/o_p_boundary_refused_i_2/I1
+                         LUT2 (Prop_LUT2_I1_O)        0.070     3.143 r  u_regs/o_p_boundary_refused_i_2/O
+                         net (fo=2, unplaced)         0.186     3.329    u_req_fifo/o_cnt_align_refused_reg[0]
+                                                                      r  u_req_fifo/o_p_align_refused_i_1/I0
+                         LUT6 (Prop_LUT6_I0_O)        0.038     3.367 r  u_req_fifo/o_p_align_refused_i_1/O
+                         net (fo=33, unplaced)        0.200     3.567    u_rdm/o_cnt_align_refused_reg[0]_0
+                         FDRE                                         r  u_rdm/o_cnt_align_refused_reg[0]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk rise edge)        5.000     5.000 r  
+                                                      0.000     5.000 r  clk (IN)
+                         net (fo=6073, unset)         0.021     5.021    u_rdm/clk
+                         FDRE                                         r  u_rdm/o_cnt_align_refused_reg[0]/C
+                         clock pessimism              0.000     5.021    
+                         clock uncertainty           -0.035     4.986    
+                         FDRE (Setup_FDRE_C_CE)      -0.061     4.925    u_rdm/o_cnt_align_refused_reg[0]
+  -------------------------------------------------------------------
+                         required time                          4.925    
+                         arrival time                          -3.567    
+  -------------------------------------------------------------------
+                         slack                                  1.358    
+
+Slack (MET) :             1.358ns  (required time - arrival time)
+  Source:                 u_req_fifo/rptr_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_rdm/o_cnt_align_refused_reg[0]/CE
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (clk rise@5.000ns - clk rise@0.000ns)
+  Data Path Delay:        3.537ns  (logic 1.228ns (34.719%)  route 2.309ns (65.281%))
+  Logic Levels:           14  (CARRY8=4 LUT2=1 LUT3=2 LUT4=2 LUT5=1 LUT6=3 RAMD32=1)
+  Clock Path Skew:        -0.009ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.021ns = ( 5.021 - 5.000 ) 
+    Source Clock Delay      (SCD):    0.030ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk rise edge)        0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=6073, unset)         0.030     0.030    u_req_fifo/clk
+                         FDRE                                         r  u_req_fifo/rptr_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_FDRE_C_Q)         0.077     0.107 f  u_req_fifo/rptr_reg[1]/Q
+                         net (fo=118, unplaced)       0.238     0.345    u_req_fifo/mem_reg_0_7_70_83/ADDRE1
+                                                                      f  u_req_fifo/mem_reg_0_7_70_83/RAME/RADR1
+                         RAMD32 (Prop_RAMD32_RADR1_O)
+                                                      0.139     0.484 r  u_req_fifo/mem_reg_0_7_70_83/RAME/O
+                         net (fo=4, unplaced)         0.119     0.603    u_req_fifo/clk_0[75]
+                                                                      r  u_req_fifo/o_p_boundary_refused_i_19/I0
+                         LUT6 (Prop_LUT6_I0_O)        0.150     0.753 r  u_req_fifo/o_p_boundary_refused_i_19/O
+                         net (fo=6, unplaced)         0.208     0.961    u_req_fifo/o_p_boundary_refused_i_19_n_0
+                                                                      r  u_req_fifo/o_cnt_window_refused[15]_i_95/I2
+                         LUT4 (Prop_LUT4_I2_O)        0.037     0.998 r  u_req_fifo/o_cnt_window_refused[15]_i_95/O
+                         net (fo=1, unplaced)         0.023     1.021    u_req_fifo/o_cnt_window_refused[15]_i_95_n_0
+                                                                      r  u_req_fifo/o_cnt_window_refused_reg[15]_i_94/S[1]
+                         CARRY8 (Prop_CARRY8_S[1]_CO[7])
+                                                      0.197     1.218 r  u_req_fifo/o_cnt_window_refused_reg[15]_i_94/CO[7]
+                         net (fo=1, unplaced)         0.005     1.223    u_req_fifo/o_cnt_window_refused_reg[15]_i_94_n_0
+                                                                      r  u_req_fifo/o_cnt_window_refused_reg[15]_i_93/CI
+                         CARRY8 (Prop_CARRY8_CI_O[1])
+                                                      0.076     1.299 r  u_req_fifo/o_cnt_window_refused_reg[15]_i_93/O[1]
+                         net (fo=2, unplaced)         0.184     1.483    u_regs/req_end[16]
+                                                                      r  u_regs/o_cnt_window_refused[15]_i_49/I3
+                         LUT4 (Prop_LUT4_I3_O)        0.068     1.551 f  u_regs/o_cnt_window_refused[15]_i_49/O
+                         net (fo=1, unplaced)         0.245     1.796    u_regs/o_cnt_window_refused[15]_i_49_n_0
+                                                                      f  u_regs/o_cnt_window_refused_reg[15]_i_16/DI[2]
+                         CARRY8 (Prop_CARRY8_DI[2]_CO[7])
+                                                      0.117     1.913 f  u_regs/o_cnt_window_refused_reg[15]_i_16/CO[7]
+                         net (fo=1, unplaced)         0.005     1.918    u_regs/o_cnt_window_refused_reg[15]_i_16_n_0
+                                                                      f  u_regs/o_cnt_window_refused_reg[15]_i_6/CI
+                         CARRY8 (Prop_CARRY8_CI_CO[4])
+                                                      0.092     2.010 f  u_regs/o_cnt_window_refused_reg[15]_i_6/CO[4]
+                         net (fo=1, unplaced)         0.134     2.144    u_regs/u_rdm/g_window0
+                                                                      f  u_regs/o_cnt_window_refused[15]_i_3/I1
+                         LUT3 (Prop_LUT3_I1_O)        0.053     2.197 r  u_regs/o_cnt_window_refused[15]_i_3/O
+                         net (fo=3, unplaced)         0.192     2.389    u_req_fifo/o_cnt_tag_conflict_reg[0]_0
+                                                                      r  u_req_fifo/o_p_tag_conflict_i_2/I4
+                         LUT5 (Prop_LUT5_I4_O)        0.038     2.427 r  u_req_fifo/o_p_tag_conflict_i_2/O
+                         net (fo=2, unplaced)         0.186     2.613    u_req_fifo/o_p_tag_conflict_i_2_n_0
+                                                                      r  u_req_fifo/issue_desc[transaction_tag][3]_i_3/I1
+                         LUT3 (Prop_LUT3_I1_O)        0.038     2.651 f  u_req_fifo/issue_desc[transaction_tag][3]_i_3/O
+                         net (fo=2, unplaced)         0.186     2.837    u_req_fifo/issue_desc[transaction_tag][3]_i_3_n_0
+                                                                      f  u_req_fifo/o_cnt_window_refused[15]_i_4/I3
+                         LUT6 (Prop_LUT6_I3_O)        0.038     2.875 f  u_req_fifo/o_cnt_window_refused[15]_i_4/O
+                         net (fo=4, unplaced)         0.198     3.073    u_regs/o_cnt_window_refused_reg[0]
+                                                                      f  u_regs/o_p_boundary_refused_i_2/I1
+                         LUT2 (Prop_LUT2_I1_O)        0.070     3.143 r  u_regs/o_p_boundary_refused_i_2/O
+                         net (fo=2, unplaced)         0.186     3.329    u_req_fifo/o_cnt_align_refused_reg[0]
+                                                                      r  u_req_fifo/o_p_align_refused_i_1/I0
+                         LUT6 (Prop_LUT6_I0_O)        0.038     3.367 r  u_req_fifo/o_p_align_refused_i_1/O
+                         net (fo=33, unplaced)        0.200     3.567    u_rdm/o_cnt_align_refused_reg[0]_0
+                         FDRE                                         r  u_rdm/o_cnt_align_refused_reg[0]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk rise edge)        5.000     5.000 r  
+                                                      0.000     5.000 r  clk (IN)
+                         net (fo=6073, unset)         0.021     5.021    u_rdm/clk
+                         FDRE                                         r  u_rdm/o_cnt_align_refused_reg[0]/C
+                         clock pessimism              0.000     5.021    
+                         clock uncertainty           -0.035     4.986    
+                         FDRE (Setup_FDRE_C_CE)      -0.061     4.925    u_rdm/o_cnt_align_refused_reg[0]
+  -------------------------------------------------------------------
+                         required time                          4.925    
+                         arrival time                          -3.567    
+  -------------------------------------------------------------------
+                         slack                                  1.358    
+
+Slack (MET) :             1.358ns  (required time - arrival time)
+  Source:                 u_req_fifo/rptr_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_rdm/o_cnt_align_refused_reg[0]/CE
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (clk rise@5.000ns - clk rise@0.000ns)
+  Data Path Delay:        3.537ns  (logic 1.228ns (34.719%)  route 2.309ns (65.281%))
+  Logic Levels:           14  (CARRY8=4 LUT2=1 LUT3=2 LUT4=2 LUT5=1 LUT6=3 RAMD32=1)
+  Clock Path Skew:        -0.009ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.021ns = ( 5.021 - 5.000 ) 
+    Source Clock Delay      (SCD):    0.030ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk rise edge)        0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=6073, unset)         0.030     0.030    u_req_fifo/clk
+                         FDRE                                         r  u_req_fifo/rptr_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_FDRE_C_Q)         0.077     0.107 r  u_req_fifo/rptr_reg[1]/Q
+                         net (fo=118, unplaced)       0.238     0.345    u_req_fifo/mem_reg_0_7_70_83/ADDRE1
+                                                                      r  u_req_fifo/mem_reg_0_7_70_83/RAME/RADR1
+                         RAMD32 (Prop_RAMD32_RADR1_O)
+                                                      0.139     0.484 f  u_req_fifo/mem_reg_0_7_70_83/RAME/O
+                         net (fo=4, unplaced)         0.119     0.603    u_req_fifo/clk_0[75]
+                                                                      f  u_req_fifo/o_p_boundary_refused_i_19/I0
+                         LUT6 (Prop_LUT6_I0_O)        0.150     0.753 f  u_req_fifo/o_p_boundary_refused_i_19/O
+                         net (fo=6, unplaced)         0.208     0.961    u_req_fifo/o_p_boundary_refused_i_19_n_0
+                                                                      f  u_req_fifo/o_cnt_window_refused[15]_i_95/I2
+                         LUT4 (Prop_LUT4_I2_O)        0.037     0.998 r  u_req_fifo/o_cnt_window_refused[15]_i_95/O
+                         net (fo=1, unplaced)         0.023     1.021    u_req_fifo/o_cnt_window_refused[15]_i_95_n_0
+                                                                      r  u_req_fifo/o_cnt_window_refused_reg[15]_i_94/S[1]
+                         CARRY8 (Prop_CARRY8_S[1]_CO[7])
+                                                      0.197     1.218 r  u_req_fifo/o_cnt_window_refused_reg[15]_i_94/CO[7]
+                         net (fo=1, unplaced)         0.005     1.223    u_req_fifo/o_cnt_window_refused_reg[15]_i_94_n_0
+                                                                      r  u_req_fifo/o_cnt_window_refused_reg[15]_i_93/CI
+                         CARRY8 (Prop_CARRY8_CI_O[1])
+                                                      0.076     1.299 r  u_req_fifo/o_cnt_window_refused_reg[15]_i_93/O[1]
+                         net (fo=2, unplaced)         0.184     1.483    u_regs/req_end[16]
+                                                                      r  u_regs/o_cnt_window_refused[15]_i_49/I3
+                         LUT4 (Prop_LUT4_I3_O)        0.068     1.551 f  u_regs/o_cnt_window_refused[15]_i_49/O
+                         net (fo=1, unplaced)         0.245     1.796    u_regs/o_cnt_window_refused[15]_i_49_n_0
+                                                                      f  u_regs/o_cnt_window_refused_reg[15]_i_16/DI[2]
+                         CARRY8 (Prop_CARRY8_DI[2]_CO[7])
+                                                      0.117     1.913 f  u_regs/o_cnt_window_refused_reg[15]_i_16/CO[7]
+                         net (fo=1, unplaced)         0.005     1.918    u_regs/o_cnt_window_refused_reg[15]_i_16_n_0
+                                                                      f  u_regs/o_cnt_window_refused_reg[15]_i_6/CI
+                         CARRY8 (Prop_CARRY8_CI_CO[4])
+                                                      0.092     2.010 f  u_regs/o_cnt_window_refused_reg[15]_i_6/CO[4]
+                         net (fo=1, unplaced)         0.134     2.144    u_regs/u_rdm/g_window0
+                                                                      f  u_regs/o_cnt_window_refused[15]_i_3/I1
+                         LUT3 (Prop_LUT3_I1_O)        0.053     2.197 r  u_regs/o_cnt_window_refused[15]_i_3/O
+                         net (fo=3, unplaced)         0.192     2.389    u_req_fifo/o_cnt_tag_conflict_reg[0]_0
+                                                                      r  u_req_fifo/o_p_tag_conflict_i_2/I4
+                         LUT5 (Prop_LUT5_I4_O)        0.038     2.427 r  u_req_fifo/o_p_tag_conflict_i_2/O
+                         net (fo=2, unplaced)         0.186     2.613    u_req_fifo/o_p_tag_conflict_i_2_n_0
+                                                                      r  u_req_fifo/issue_desc[transaction_tag][3]_i_3/I1
+                         LUT3 (Prop_LUT3_I1_O)        0.038     2.651 f  u_req_fifo/issue_desc[transaction_tag][3]_i_3/O
+                         net (fo=2, unplaced)         0.186     2.837    u_req_fifo/issue_desc[transaction_tag][3]_i_3_n_0
+                                                                      f  u_req_fifo/o_cnt_window_refused[15]_i_4/I3
+                         LUT6 (Prop_LUT6_I3_O)        0.038     2.875 f  u_req_fifo/o_cnt_window_refused[15]_i_4/O
+                         net (fo=4, unplaced)         0.198     3.073    u_regs/o_cnt_window_refused_reg[0]
+                                                                      f  u_regs/o_p_boundary_refused_i_2/I1
+                         LUT2 (Prop_LUT2_I1_O)        0.070     3.143 r  u_regs/o_p_boundary_refused_i_2/O
+                         net (fo=2, unplaced)         0.186     3.329    u_req_fifo/o_cnt_align_refused_reg[0]
+                                                                      r  u_req_fifo/o_p_align_refused_i_1/I0
+                         LUT6 (Prop_LUT6_I0_O)        0.038     3.367 r  u_req_fifo/o_p_align_refused_i_1/O
+                         net (fo=33, unplaced)        0.200     3.567    u_rdm/o_cnt_align_refused_reg[0]_0
+                         FDRE                                         r  u_rdm/o_cnt_align_refused_reg[0]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk rise edge)        5.000     5.000 r  
+                                                      0.000     5.000 r  clk (IN)
+                         net (fo=6073, unset)         0.021     5.021    u_rdm/clk
+                         FDRE                                         r  u_rdm/o_cnt_align_refused_reg[0]/C
+                         clock pessimism              0.000     5.021    
+                         clock uncertainty           -0.035     4.986    
+                         FDRE (Setup_FDRE_C_CE)      -0.061     4.925    u_rdm/o_cnt_align_refused_reg[0]
+  -------------------------------------------------------------------
+                         required time                          4.925    
+                         arrival time                          -3.567    
+  -------------------------------------------------------------------
+                         slack                                  1.358    
+
+Slack (MET) :             1.358ns  (required time - arrival time)
+  Source:                 u_req_fifo/rptr_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_rdm/o_cnt_align_refused_reg[0]/CE
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (clk rise@5.000ns - clk rise@0.000ns)
+  Data Path Delay:        3.537ns  (logic 1.228ns (34.719%)  route 2.309ns (65.281%))
+  Logic Levels:           14  (CARRY8=4 LUT2=1 LUT3=2 LUT4=2 LUT5=1 LUT6=3 RAMD32=1)
+  Clock Path Skew:        -0.009ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.021ns = ( 5.021 - 5.000 ) 
+    Source Clock Delay      (SCD):    0.030ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk rise edge)        0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=6073, unset)         0.030     0.030    u_req_fifo/clk
+                         FDRE                                         r  u_req_fifo/rptr_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_FDRE_C_Q)         0.077     0.107 f  u_req_fifo/rptr_reg[1]/Q
+                         net (fo=118, unplaced)       0.238     0.345    u_req_fifo/mem_reg_0_7_70_83/ADDRE1
+                                                                      f  u_req_fifo/mem_reg_0_7_70_83/RAME/RADR1
+                         RAMD32 (Prop_RAMD32_RADR1_O)
+                                                      0.139     0.484 f  u_req_fifo/mem_reg_0_7_70_83/RAME/O
+                         net (fo=4, unplaced)         0.119     0.603    u_req_fifo/clk_0[75]
+                                                                      f  u_req_fifo/o_p_boundary_refused_i_19/I0
+                         LUT6 (Prop_LUT6_I0_O)        0.150     0.753 f  u_req_fifo/o_p_boundary_refused_i_19/O
+                         net (fo=6, unplaced)         0.208     0.961    u_req_fifo/o_p_boundary_refused_i_19_n_0
+                                                                      f  u_req_fifo/o_cnt_window_refused[15]_i_95/I2
+                         LUT4 (Prop_LUT4_I2_O)        0.037     0.998 r  u_req_fifo/o_cnt_window_refused[15]_i_95/O
+                         net (fo=1, unplaced)         0.023     1.021    u_req_fifo/o_cnt_window_refused[15]_i_95_n_0
+                                                                      r  u_req_fifo/o_cnt_window_refused_reg[15]_i_94/S[1]
+                         CARRY8 (Prop_CARRY8_S[1]_CO[7])
+                                                      0.197     1.218 r  u_req_fifo/o_cnt_window_refused_reg[15]_i_94/CO[7]
+                         net (fo=1, unplaced)         0.005     1.223    u_req_fifo/o_cnt_window_refused_reg[15]_i_94_n_0
+                                                                      r  u_req_fifo/o_cnt_window_refused_reg[15]_i_93/CI
+                         CARRY8 (Prop_CARRY8_CI_O[1])
+                                                      0.076     1.299 r  u_req_fifo/o_cnt_window_refused_reg[15]_i_93/O[1]
+                         net (fo=2, unplaced)         0.184     1.483    u_regs/req_end[16]
+                                                                      r  u_regs/o_cnt_window_refused[15]_i_49/I3
+                         LUT4 (Prop_LUT4_I3_O)        0.068     1.551 f  u_regs/o_cnt_window_refused[15]_i_49/O
+                         net (fo=1, unplaced)         0.245     1.796    u_regs/o_cnt_window_refused[15]_i_49_n_0
+                                                                      f  u_regs/o_cnt_window_refused_reg[15]_i_16/DI[2]
+                         CARRY8 (Prop_CARRY8_DI[2]_CO[7])
+                                                      0.117     1.913 f  u_regs/o_cnt_window_refused_reg[15]_i_16/CO[7]
+                         net (fo=1, unplaced)         0.005     1.918    u_regs/o_cnt_window_refused_reg[15]_i_16_n_0
+                                                                      f  u_regs/o_cnt_window_refused_reg[15]_i_6/CI
+                         CARRY8 (Prop_CARRY8_CI_CO[4])
+                                                      0.092     2.010 f  u_regs/o_cnt_window_refused_reg[15]_i_6/CO[4]
+                         net (fo=1, unplaced)         0.134     2.144    u_regs/u_rdm/g_window0
+                                                                      f  u_regs/o_cnt_window_refused[15]_i_3/I1
+                         LUT3 (Prop_LUT3_I1_O)        0.053     2.197 r  u_regs/o_cnt_window_refused[15]_i_3/O
+                         net (fo=3, unplaced)         0.192     2.389    u_req_fifo/o_cnt_tag_conflict_reg[0]_0
+                                                                      r  u_req_fifo/o_p_tag_conflict_i_2/I4
+                         LUT5 (Prop_LUT5_I4_O)        0.038     2.427 r  u_req_fifo/o_p_tag_conflict_i_2/O
+                         net (fo=2, unplaced)         0.186     2.613    u_req_fifo/o_p_tag_conflict_i_2_n_0
+                                                                      r  u_req_fifo/issue_desc[transaction_tag][3]_i_3/I1
+                         LUT3 (Prop_LUT3_I1_O)        0.038     2.651 f  u_req_fifo/issue_desc[transaction_tag][3]_i_3/O
+                         net (fo=2, unplaced)         0.186     2.837    u_req_fifo/issue_desc[transaction_tag][3]_i_3_n_0
+                                                                      f  u_req_fifo/o_cnt_window_refused[15]_i_4/I3
+                         LUT6 (Prop_LUT6_I3_O)        0.038     2.875 f  u_req_fifo/o_cnt_window_refused[15]_i_4/O
+                         net (fo=4, unplaced)         0.198     3.073    u_regs/o_cnt_window_refused_reg[0]
+                                                                      f  u_regs/o_p_boundary_refused_i_2/I1
+                         LUT2 (Prop_LUT2_I1_O)        0.070     3.143 r  u_regs/o_p_boundary_refused_i_2/O
+                         net (fo=2, unplaced)         0.186     3.329    u_req_fifo/o_cnt_align_refused_reg[0]
+                                                                      r  u_req_fifo/o_p_align_refused_i_1/I0
+                         LUT6 (Prop_LUT6_I0_O)        0.038     3.367 r  u_req_fifo/o_p_align_refused_i_1/O
+                         net (fo=33, unplaced)        0.200     3.567    u_rdm/o_cnt_align_refused_reg[0]_0
+                         FDRE                                         r  u_rdm/o_cnt_align_refused_reg[0]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk rise edge)        5.000     5.000 r  
+                                                      0.000     5.000 r  clk (IN)
+                         net (fo=6073, unset)         0.021     5.021    u_rdm/clk
+                         FDRE                                         r  u_rdm/o_cnt_align_refused_reg[0]/C
+                         clock pessimism              0.000     5.021    
+                         clock uncertainty           -0.035     4.986    
+                         FDRE (Setup_FDRE_C_CE)      -0.061     4.925    u_rdm/o_cnt_align_refused_reg[0]
+  -------------------------------------------------------------------
+                         required time                          4.925    
+                         arrival time                          -3.567    
+  -------------------------------------------------------------------
+                         slack                                  1.358    
+
+Slack (MET) :             1.358ns  (required time - arrival time)
+  Source:                 u_req_fifo/rptr_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_rdm/o_cnt_align_refused_reg[0]/CE
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (clk rise@5.000ns - clk rise@0.000ns)
+  Data Path Delay:        3.537ns  (logic 1.223ns (34.577%)  route 2.314ns (65.423%))
+  Logic Levels:           15  (CARRY8=5 LUT2=1 LUT3=2 LUT4=2 LUT5=1 LUT6=3 RAMD32=1)
+  Clock Path Skew:        -0.009ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.021ns = ( 5.021 - 5.000 ) 
+    Source Clock Delay      (SCD):    0.030ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk rise edge)        0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=6073, unset)         0.030     0.030    u_req_fifo/clk
+                         FDRE                                         r  u_req_fifo/rptr_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_FDRE_C_Q)         0.077     0.107 r  u_req_fifo/rptr_reg[1]/Q
+                         net (fo=118, unplaced)       0.238     0.345    u_req_fifo/mem_reg_0_7_70_83/ADDRE1
+                                                                      r  u_req_fifo/mem_reg_0_7_70_83/RAME/RADR1
+                         RAMD32 (Prop_RAMD32_RADR1_O)
+                                                      0.139     0.484 r  u_req_fifo/mem_reg_0_7_70_83/RAME/O
+                         net (fo=4, unplaced)         0.119     0.603    u_req_fifo/clk_0[75]
+                                                                      r  u_req_fifo/o_p_boundary_refused_i_19/I0
+                         LUT6 (Prop_LUT6_I0_O)        0.150     0.753 r  u_req_fifo/o_p_boundary_refused_i_19/O
+                         net (fo=6, unplaced)         0.208     0.961    u_req_fifo/o_p_boundary_refused_i_19_n_0
+                                                                      r  u_req_fifo/o_cnt_window_refused[15]_i_95/I2
+                         LUT4 (Prop_LUT4_I2_O)        0.037     0.998 r  u_req_fifo/o_cnt_window_refused[15]_i_95/O
+                         net (fo=1, unplaced)         0.023     1.021    u_req_fifo/o_cnt_window_refused[15]_i_95_n_0
+                                                                      r  u_req_fifo/o_cnt_window_refused_reg[15]_i_94/S[1]
+                         CARRY8 (Prop_CARRY8_S[1]_CO[7])
+                                                      0.197     1.218 r  u_req_fifo/o_cnt_window_refused_reg[15]_i_94/CO[7]
+                         net (fo=1, unplaced)         0.005     1.223    u_req_fifo/o_cnt_window_refused_reg[15]_i_94_n_0
+                                                                      r  u_req_fifo/o_cnt_window_refused_reg[15]_i_93/CI
+                         CARRY8 (Prop_CARRY8_CI_CO[7])
+                                                      0.022     1.245 r  u_req_fifo/o_cnt_window_refused_reg[15]_i_93/CO[7]
+                         net (fo=1, unplaced)         0.005     1.250    u_req_fifo/o_cnt_window_refused_reg[15]_i_93_n_0
+                                                                      r  u_req_fifo/o_cnt_window_refused_reg[15]_i_60/CI
+                         CARRY8 (Prop_CARRY8_CI_CO[7])
+                                                      0.022     1.272 r  u_req_fifo/o_cnt_window_refused_reg[15]_i_60/CO[7]
+                         net (fo=1, unplaced)         0.005     1.277    u_req_fifo/o_cnt_window_refused_reg[15]_i_60_n_0
+                                                                      r  u_req_fifo/o_cnt_window_refused_reg[15]_i_21/CI
+                         CARRY8 (Prop_CARRY8_CI_O[1])
+                                                      0.076     1.353 r  u_req_fifo/o_cnt_window_refused_reg[15]_i_21/O[1]
+                         net (fo=2, unplaced)         0.184     1.537    u_regs/O[1]
+                                                                      r  u_regs/o_cnt_window_refused[15]_i_18/I3
+                         LUT4 (Prop_LUT4_I3_O)        0.068     1.605 f  u_regs/o_cnt_window_refused[15]_i_18/O
+                         net (fo=1, unplaced)         0.245     1.850    u_regs/o_cnt_window_refused[15]_i_18_n_0
+                                                                      f  u_regs/o_cnt_window_refused_reg[15]_i_6/DI[2]
+                         CARRY8 (Prop_CARRY8_DI[2]_CO[4])
+                                                      0.160     2.010 f  u_regs/o_cnt_window_refused_reg[15]_i_6/CO[4]
+                         net (fo=1, unplaced)         0.134     2.144    u_regs/u_rdm/g_window0
+                                                                      f  u_regs/o_cnt_window_refused[15]_i_3/I1
+                         LUT3 (Prop_LUT3_I1_O)        0.053     2.197 r  u_regs/o_cnt_window_refused[15]_i_3/O
+                         net (fo=3, unplaced)         0.192     2.389    u_req_fifo/o_cnt_tag_conflict_reg[0]_0
+                                                                      r  u_req_fifo/o_p_tag_conflict_i_2/I4
+                         LUT5 (Prop_LUT5_I4_O)        0.038     2.427 r  u_req_fifo/o_p_tag_conflict_i_2/O
+                         net (fo=2, unplaced)         0.186     2.613    u_req_fifo/o_p_tag_conflict_i_2_n_0
+                                                                      r  u_req_fifo/issue_desc[transaction_tag][3]_i_3/I1
+                         LUT3 (Prop_LUT3_I1_O)        0.038     2.651 f  u_req_fifo/issue_desc[transaction_tag][3]_i_3/O
+                         net (fo=2, unplaced)         0.186     2.837    u_req_fifo/issue_desc[transaction_tag][3]_i_3_n_0
+                                                                      f  u_req_fifo/o_cnt_window_refused[15]_i_4/I3
+                         LUT6 (Prop_LUT6_I3_O)        0.038     2.875 f  u_req_fifo/o_cnt_window_refused[15]_i_4/O
+                         net (fo=4, unplaced)         0.198     3.073    u_regs/o_cnt_window_refused_reg[0]
+                                                                      f  u_regs/o_p_boundary_refused_i_2/I1
+                         LUT2 (Prop_LUT2_I1_O)        0.070     3.143 r  u_regs/o_p_boundary_refused_i_2/O
+                         net (fo=2, unplaced)         0.186     3.329    u_req_fifo/o_cnt_align_refused_reg[0]
+                                                                      r  u_req_fifo/o_p_align_refused_i_1/I0
+                         LUT6 (Prop_LUT6_I0_O)        0.038     3.367 r  u_req_fifo/o_p_align_refused_i_1/O
+                         net (fo=33, unplaced)        0.200     3.567    u_rdm/o_cnt_align_refused_reg[0]_0
+                         FDRE                                         r  u_rdm/o_cnt_align_refused_reg[0]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk rise edge)        5.000     5.000 r  
+                                                      0.000     5.000 r  clk (IN)
+                         net (fo=6073, unset)         0.021     5.021    u_rdm/clk
+                         FDRE                                         r  u_rdm/o_cnt_align_refused_reg[0]/C
+                         clock pessimism              0.000     5.021    
+                         clock uncertainty           -0.035     4.986    
+                         FDRE (Setup_FDRE_C_CE)      -0.061     4.925    u_rdm/o_cnt_align_refused_reg[0]
+  -------------------------------------------------------------------
+                         required time                          4.925    
+                         arrival time                          -3.567    
+  -------------------------------------------------------------------
+                         slack                                  1.358    
+
+Slack (MET) :             1.358ns  (required time - arrival time)
+  Source:                 u_req_fifo/rptr_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_rdm/o_cnt_align_refused_reg[0]/CE
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (clk rise@5.000ns - clk rise@0.000ns)
+  Data Path Delay:        3.537ns  (logic 1.223ns (34.577%)  route 2.314ns (65.423%))
+  Logic Levels:           15  (CARRY8=5 LUT2=1 LUT3=2 LUT4=2 LUT5=1 LUT6=3 RAMD32=1)
+  Clock Path Skew:        -0.009ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.021ns = ( 5.021 - 5.000 ) 
+    Source Clock Delay      (SCD):    0.030ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk rise edge)        0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=6073, unset)         0.030     0.030    u_req_fifo/clk
+                         FDRE                                         r  u_req_fifo/rptr_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_FDRE_C_Q)         0.077     0.107 f  u_req_fifo/rptr_reg[1]/Q
+                         net (fo=118, unplaced)       0.238     0.345    u_req_fifo/mem_reg_0_7_70_83/ADDRE1
+                                                                      f  u_req_fifo/mem_reg_0_7_70_83/RAME/RADR1
+                         RAMD32 (Prop_RAMD32_RADR1_O)
+                                                      0.139     0.484 r  u_req_fifo/mem_reg_0_7_70_83/RAME/O
+                         net (fo=4, unplaced)         0.119     0.603    u_req_fifo/clk_0[75]
+                                                                      r  u_req_fifo/o_p_boundary_refused_i_19/I0
+                         LUT6 (Prop_LUT6_I0_O)        0.150     0.753 r  u_req_fifo/o_p_boundary_refused_i_19/O
+                         net (fo=6, unplaced)         0.208     0.961    u_req_fifo/o_p_boundary_refused_i_19_n_0
+                                                                      r  u_req_fifo/o_cnt_window_refused[15]_i_95/I2
+                         LUT4 (Prop_LUT4_I2_O)        0.037     0.998 r  u_req_fifo/o_cnt_window_refused[15]_i_95/O
+                         net (fo=1, unplaced)         0.023     1.021    u_req_fifo/o_cnt_window_refused[15]_i_95_n_0
+                                                                      r  u_req_fifo/o_cnt_window_refused_reg[15]_i_94/S[1]
+                         CARRY8 (Prop_CARRY8_S[1]_CO[7])
+                                                      0.197     1.218 r  u_req_fifo/o_cnt_window_refused_reg[15]_i_94/CO[7]
+                         net (fo=1, unplaced)         0.005     1.223    u_req_fifo/o_cnt_window_refused_reg[15]_i_94_n_0
+                                                                      r  u_req_fifo/o_cnt_window_refused_reg[15]_i_93/CI
+                         CARRY8 (Prop_CARRY8_CI_CO[7])
+                                                      0.022     1.245 r  u_req_fifo/o_cnt_window_refused_reg[15]_i_93/CO[7]
+                         net (fo=1, unplaced)         0.005     1.250    u_req_fifo/o_cnt_window_refused_reg[15]_i_93_n_0
+                                                                      r  u_req_fifo/o_cnt_window_refused_reg[15]_i_60/CI
+                         CARRY8 (Prop_CARRY8_CI_CO[7])
+                                                      0.022     1.272 r  u_req_fifo/o_cnt_window_refused_reg[15]_i_60/CO[7]
+                         net (fo=1, unplaced)         0.005     1.277    u_req_fifo/o_cnt_window_refused_reg[15]_i_60_n_0
+                                                                      r  u_req_fifo/o_cnt_window_refused_reg[15]_i_21/CI
+                         CARRY8 (Prop_CARRY8_CI_O[1])
+                                                      0.076     1.353 r  u_req_fifo/o_cnt_window_refused_reg[15]_i_21/O[1]
+                         net (fo=2, unplaced)         0.184     1.537    u_regs/O[1]
+                                                                      r  u_regs/o_cnt_window_refused[15]_i_18/I3
+                         LUT4 (Prop_LUT4_I3_O)        0.068     1.605 f  u_regs/o_cnt_window_refused[15]_i_18/O
+                         net (fo=1, unplaced)         0.245     1.850    u_regs/o_cnt_window_refused[15]_i_18_n_0
+                                                                      f  u_regs/o_cnt_window_refused_reg[15]_i_6/DI[2]
+                         CARRY8 (Prop_CARRY8_DI[2]_CO[4])
+                                                      0.160     2.010 f  u_regs/o_cnt_window_refused_reg[15]_i_6/CO[4]
+                         net (fo=1, unplaced)         0.134     2.144    u_regs/u_rdm/g_window0
+                                                                      f  u_regs/o_cnt_window_refused[15]_i_3/I1
+                         LUT3 (Prop_LUT3_I1_O)        0.053     2.197 r  u_regs/o_cnt_window_refused[15]_i_3/O
+                         net (fo=3, unplaced)         0.192     2.389    u_req_fifo/o_cnt_tag_conflict_reg[0]_0
+                                                                      r  u_req_fifo/o_p_tag_conflict_i_2/I4
+                         LUT5 (Prop_LUT5_I4_O)        0.038     2.427 r  u_req_fifo/o_p_tag_conflict_i_2/O
+                         net (fo=2, unplaced)         0.186     2.613    u_req_fifo/o_p_tag_conflict_i_2_n_0
+                                                                      r  u_req_fifo/issue_desc[transaction_tag][3]_i_3/I1
+                         LUT3 (Prop_LUT3_I1_O)        0.038     2.651 f  u_req_fifo/issue_desc[transaction_tag][3]_i_3/O
+                         net (fo=2, unplaced)         0.186     2.837    u_req_fifo/issue_desc[transaction_tag][3]_i_3_n_0
+                                                                      f  u_req_fifo/o_cnt_window_refused[15]_i_4/I3
+                         LUT6 (Prop_LUT6_I3_O)        0.038     2.875 f  u_req_fifo/o_cnt_window_refused[15]_i_4/O
+                         net (fo=4, unplaced)         0.198     3.073    u_regs/o_cnt_window_refused_reg[0]
+                                                                      f  u_regs/o_p_boundary_refused_i_2/I1
+                         LUT2 (Prop_LUT2_I1_O)        0.070     3.143 r  u_regs/o_p_boundary_refused_i_2/O
+                         net (fo=2, unplaced)         0.186     3.329    u_req_fifo/o_cnt_align_refused_reg[0]
+                                                                      r  u_req_fifo/o_p_align_refused_i_1/I0
+                         LUT6 (Prop_LUT6_I0_O)        0.038     3.367 r  u_req_fifo/o_p_align_refused_i_1/O
+                         net (fo=33, unplaced)        0.200     3.567    u_rdm/o_cnt_align_refused_reg[0]_0
+                         FDRE                                         r  u_rdm/o_cnt_align_refused_reg[0]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk rise edge)        5.000     5.000 r  
+                                                      0.000     5.000 r  clk (IN)
+                         net (fo=6073, unset)         0.021     5.021    u_rdm/clk
+                         FDRE                                         r  u_rdm/o_cnt_align_refused_reg[0]/C
+                         clock pessimism              0.000     5.021    
+                         clock uncertainty           -0.035     4.986    
+                         FDRE (Setup_FDRE_C_CE)      -0.061     4.925    u_rdm/o_cnt_align_refused_reg[0]
+  -------------------------------------------------------------------
+                         required time                          4.925    
+                         arrival time                          -3.567    
+  -------------------------------------------------------------------
+                         slack                                  1.358    
+
+Slack (MET) :             1.358ns  (required time - arrival time)
+  Source:                 u_req_fifo/rptr_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_rdm/o_cnt_align_refused_reg[0]/CE
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (clk rise@5.000ns - clk rise@0.000ns)
+  Data Path Delay:        3.537ns  (logic 1.223ns (34.577%)  route 2.314ns (65.423%))
+  Logic Levels:           15  (CARRY8=5 LUT2=1 LUT3=2 LUT4=2 LUT5=1 LUT6=3 RAMD32=1)
+  Clock Path Skew:        -0.009ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.021ns = ( 5.021 - 5.000 ) 
+    Source Clock Delay      (SCD):    0.030ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk rise edge)        0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=6073, unset)         0.030     0.030    u_req_fifo/clk
+                         FDRE                                         r  u_req_fifo/rptr_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_FDRE_C_Q)         0.077     0.107 r  u_req_fifo/rptr_reg[1]/Q
+                         net (fo=118, unplaced)       0.238     0.345    u_req_fifo/mem_reg_0_7_70_83/ADDRE1
+                                                                      r  u_req_fifo/mem_reg_0_7_70_83/RAME/RADR1
+                         RAMD32 (Prop_RAMD32_RADR1_O)
+                                                      0.139     0.484 f  u_req_fifo/mem_reg_0_7_70_83/RAME/O
+                         net (fo=4, unplaced)         0.119     0.603    u_req_fifo/clk_0[75]
+                                                                      f  u_req_fifo/o_p_boundary_refused_i_19/I0
+                         LUT6 (Prop_LUT6_I0_O)        0.150     0.753 f  u_req_fifo/o_p_boundary_refused_i_19/O
+                         net (fo=6, unplaced)         0.208     0.961    u_req_fifo/o_p_boundary_refused_i_19_n_0
+                                                                      f  u_req_fifo/o_cnt_window_refused[15]_i_95/I2
+                         LUT4 (Prop_LUT4_I2_O)        0.037     0.998 r  u_req_fifo/o_cnt_window_refused[15]_i_95/O
+                         net (fo=1, unplaced)         0.023     1.021    u_req_fifo/o_cnt_window_refused[15]_i_95_n_0
+                                                                      r  u_req_fifo/o_cnt_window_refused_reg[15]_i_94/S[1]
+                         CARRY8 (Prop_CARRY8_S[1]_CO[7])
+                                                      0.197     1.218 r  u_req_fifo/o_cnt_window_refused_reg[15]_i_94/CO[7]
+                         net (fo=1, unplaced)         0.005     1.223    u_req_fifo/o_cnt_window_refused_reg[15]_i_94_n_0
+                                                                      r  u_req_fifo/o_cnt_window_refused_reg[15]_i_93/CI
+                         CARRY8 (Prop_CARRY8_CI_CO[7])
+                                                      0.022     1.245 r  u_req_fifo/o_cnt_window_refused_reg[15]_i_93/CO[7]
+                         net (fo=1, unplaced)         0.005     1.250    u_req_fifo/o_cnt_window_refused_reg[15]_i_93_n_0
+                                                                      r  u_req_fifo/o_cnt_window_refused_reg[15]_i_60/CI
+                         CARRY8 (Prop_CARRY8_CI_CO[7])
+                                                      0.022     1.272 r  u_req_fifo/o_cnt_window_refused_reg[15]_i_60/CO[7]
+                         net (fo=1, unplaced)         0.005     1.277    u_req_fifo/o_cnt_window_refused_reg[15]_i_60_n_0
+                                                                      r  u_req_fifo/o_cnt_window_refused_reg[15]_i_21/CI
+                         CARRY8 (Prop_CARRY8_CI_O[1])
+                                                      0.076     1.353 r  u_req_fifo/o_cnt_window_refused_reg[15]_i_21/O[1]
+                         net (fo=2, unplaced)         0.184     1.537    u_regs/O[1]
+                                                                      r  u_regs/o_cnt_window_refused[15]_i_18/I3
+                         LUT4 (Prop_LUT4_I3_O)        0.068     1.605 f  u_regs/o_cnt_window_refused[15]_i_18/O
+                         net (fo=1, unplaced)         0.245     1.850    u_regs/o_cnt_window_refused[15]_i_18_n_0
+                                                                      f  u_regs/o_cnt_window_refused_reg[15]_i_6/DI[2]
+                         CARRY8 (Prop_CARRY8_DI[2]_CO[4])
+                                                      0.160     2.010 f  u_regs/o_cnt_window_refused_reg[15]_i_6/CO[4]
+                         net (fo=1, unplaced)         0.134     2.144    u_regs/u_rdm/g_window0
+                                                                      f  u_regs/o_cnt_window_refused[15]_i_3/I1
+                         LUT3 (Prop_LUT3_I1_O)        0.053     2.197 r  u_regs/o_cnt_window_refused[15]_i_3/O
+                         net (fo=3, unplaced)         0.192     2.389    u_req_fifo/o_cnt_tag_conflict_reg[0]_0
+                                                                      r  u_req_fifo/o_p_tag_conflict_i_2/I4
+                         LUT5 (Prop_LUT5_I4_O)        0.038     2.427 r  u_req_fifo/o_p_tag_conflict_i_2/O
+                         net (fo=2, unplaced)         0.186     2.613    u_req_fifo/o_p_tag_conflict_i_2_n_0
+                                                                      r  u_req_fifo/issue_desc[transaction_tag][3]_i_3/I1
+                         LUT3 (Prop_LUT3_I1_O)        0.038     2.651 f  u_req_fifo/issue_desc[transaction_tag][3]_i_3/O
+                         net (fo=2, unplaced)         0.186     2.837    u_req_fifo/issue_desc[transaction_tag][3]_i_3_n_0
+                                                                      f  u_req_fifo/o_cnt_window_refused[15]_i_4/I3
+                         LUT6 (Prop_LUT6_I3_O)        0.038     2.875 f  u_req_fifo/o_cnt_window_refused[15]_i_4/O
+                         net (fo=4, unplaced)         0.198     3.073    u_regs/o_cnt_window_refused_reg[0]
+                                                                      f  u_regs/o_p_boundary_refused_i_2/I1
+                         LUT2 (Prop_LUT2_I1_O)        0.070     3.143 r  u_regs/o_p_boundary_refused_i_2/O
+                         net (fo=2, unplaced)         0.186     3.329    u_req_fifo/o_cnt_align_refused_reg[0]
+                                                                      r  u_req_fifo/o_p_align_refused_i_1/I0
+                         LUT6 (Prop_LUT6_I0_O)        0.038     3.367 r  u_req_fifo/o_p_align_refused_i_1/O
+                         net (fo=33, unplaced)        0.200     3.567    u_rdm/o_cnt_align_refused_reg[0]_0
+                         FDRE                                         r  u_rdm/o_cnt_align_refused_reg[0]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk rise edge)        5.000     5.000 r  
+                                                      0.000     5.000 r  clk (IN)
+                         net (fo=6073, unset)         0.021     5.021    u_rdm/clk
+                         FDRE                                         r  u_rdm/o_cnt_align_refused_reg[0]/C
+                         clock pessimism              0.000     5.021    
+                         clock uncertainty           -0.035     4.986    
+                         FDRE (Setup_FDRE_C_CE)      -0.061     4.925    u_rdm/o_cnt_align_refused_reg[0]
+  -------------------------------------------------------------------
+                         required time                          4.925    
+                         arrival time                          -3.567    
+  -------------------------------------------------------------------
+                         slack                                  1.358    
+
+Slack (MET) :             1.358ns  (required time - arrival time)
+  Source:                 u_req_fifo/rptr_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_rdm/o_cnt_align_refused_reg[0]/CE
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (clk rise@5.000ns - clk rise@0.000ns)
+  Data Path Delay:        3.537ns  (logic 1.223ns (34.577%)  route 2.314ns (65.423%))
+  Logic Levels:           15  (CARRY8=5 LUT2=1 LUT3=2 LUT4=2 LUT5=1 LUT6=3 RAMD32=1)
+  Clock Path Skew:        -0.009ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.021ns = ( 5.021 - 5.000 ) 
+    Source Clock Delay      (SCD):    0.030ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk rise edge)        0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=6073, unset)         0.030     0.030    u_req_fifo/clk
+                         FDRE                                         r  u_req_fifo/rptr_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_FDRE_C_Q)         0.077     0.107 f  u_req_fifo/rptr_reg[1]/Q
+                         net (fo=118, unplaced)       0.238     0.345    u_req_fifo/mem_reg_0_7_70_83/ADDRE1
+                                                                      f  u_req_fifo/mem_reg_0_7_70_83/RAME/RADR1
+                         RAMD32 (Prop_RAMD32_RADR1_O)
+                                                      0.139     0.484 f  u_req_fifo/mem_reg_0_7_70_83/RAME/O
+                         net (fo=4, unplaced)         0.119     0.603    u_req_fifo/clk_0[75]
+                                                                      f  u_req_fifo/o_p_boundary_refused_i_19/I0
+                         LUT6 (Prop_LUT6_I0_O)        0.150     0.753 f  u_req_fifo/o_p_boundary_refused_i_19/O
+                         net (fo=6, unplaced)         0.208     0.961    u_req_fifo/o_p_boundary_refused_i_19_n_0
+                                                                      f  u_req_fifo/o_cnt_window_refused[15]_i_95/I2
+                         LUT4 (Prop_LUT4_I2_O)        0.037     0.998 r  u_req_fifo/o_cnt_window_refused[15]_i_95/O
+                         net (fo=1, unplaced)         0.023     1.021    u_req_fifo/o_cnt_window_refused[15]_i_95_n_0
+                                                                      r  u_req_fifo/o_cnt_window_refused_reg[15]_i_94/S[1]
+                         CARRY8 (Prop_CARRY8_S[1]_CO[7])
+                                                      0.197     1.218 r  u_req_fifo/o_cnt_window_refused_reg[15]_i_94/CO[7]
+                         net (fo=1, unplaced)         0.005     1.223    u_req_fifo/o_cnt_window_refused_reg[15]_i_94_n_0
+                                                                      r  u_req_fifo/o_cnt_window_refused_reg[15]_i_93/CI
+                         CARRY8 (Prop_CARRY8_CI_CO[7])
+                                                      0.022     1.245 r  u_req_fifo/o_cnt_window_refused_reg[15]_i_93/CO[7]
+                         net (fo=1, unplaced)         0.005     1.250    u_req_fifo/o_cnt_window_refused_reg[15]_i_93_n_0
+                                                                      r  u_req_fifo/o_cnt_window_refused_reg[15]_i_60/CI
+                         CARRY8 (Prop_CARRY8_CI_CO[7])
+                                                      0.022     1.272 r  u_req_fifo/o_cnt_window_refused_reg[15]_i_60/CO[7]
+                         net (fo=1, unplaced)         0.005     1.277    u_req_fifo/o_cnt_window_refused_reg[15]_i_60_n_0
+                                                                      r  u_req_fifo/o_cnt_window_refused_reg[15]_i_21/CI
+                         CARRY8 (Prop_CARRY8_CI_O[1])
+                                                      0.076     1.353 r  u_req_fifo/o_cnt_window_refused_reg[15]_i_21/O[1]
+                         net (fo=2, unplaced)         0.184     1.537    u_regs/O[1]
+                                                                      r  u_regs/o_cnt_window_refused[15]_i_18/I3
+                         LUT4 (Prop_LUT4_I3_O)        0.068     1.605 f  u_regs/o_cnt_window_refused[15]_i_18/O
+                         net (fo=1, unplaced)         0.245     1.850    u_regs/o_cnt_window_refused[15]_i_18_n_0
+                                                                      f  u_regs/o_cnt_window_refused_reg[15]_i_6/DI[2]
+                         CARRY8 (Prop_CARRY8_DI[2]_CO[4])
+                                                      0.160     2.010 f  u_regs/o_cnt_window_refused_reg[15]_i_6/CO[4]
+                         net (fo=1, unplaced)         0.134     2.144    u_regs/u_rdm/g_window0
+                                                                      f  u_regs/o_cnt_window_refused[15]_i_3/I1
+                         LUT3 (Prop_LUT3_I1_O)        0.053     2.197 r  u_regs/o_cnt_window_refused[15]_i_3/O
+                         net (fo=3, unplaced)         0.192     2.389    u_req_fifo/o_cnt_tag_conflict_reg[0]_0
+                                                                      r  u_req_fifo/o_p_tag_conflict_i_2/I4
+                         LUT5 (Prop_LUT5_I4_O)        0.038     2.427 r  u_req_fifo/o_p_tag_conflict_i_2/O
+                         net (fo=2, unplaced)         0.186     2.613    u_req_fifo/o_p_tag_conflict_i_2_n_0
+                                                                      r  u_req_fifo/issue_desc[transaction_tag][3]_i_3/I1
+                         LUT3 (Prop_LUT3_I1_O)        0.038     2.651 f  u_req_fifo/issue_desc[transaction_tag][3]_i_3/O
+                         net (fo=2, unplaced)         0.186     2.837    u_req_fifo/issue_desc[transaction_tag][3]_i_3_n_0
+                                                                      f  u_req_fifo/o_cnt_window_refused[15]_i_4/I3
+                         LUT6 (Prop_LUT6_I3_O)        0.038     2.875 f  u_req_fifo/o_cnt_window_refused[15]_i_4/O
+                         net (fo=4, unplaced)         0.198     3.073    u_regs/o_cnt_window_refused_reg[0]
+                                                                      f  u_regs/o_p_boundary_refused_i_2/I1
+                         LUT2 (Prop_LUT2_I1_O)        0.070     3.143 r  u_regs/o_p_boundary_refused_i_2/O
+                         net (fo=2, unplaced)         0.186     3.329    u_req_fifo/o_cnt_align_refused_reg[0]
+                                                                      r  u_req_fifo/o_p_align_refused_i_1/I0
+                         LUT6 (Prop_LUT6_I0_O)        0.038     3.367 r  u_req_fifo/o_p_align_refused_i_1/O
+                         net (fo=33, unplaced)        0.200     3.567    u_rdm/o_cnt_align_refused_reg[0]_0
+                         FDRE                                         r  u_rdm/o_cnt_align_refused_reg[0]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk rise edge)        5.000     5.000 r  
+                                                      0.000     5.000 r  clk (IN)
+                         net (fo=6073, unset)         0.021     5.021    u_rdm/clk
+                         FDRE                                         r  u_rdm/o_cnt_align_refused_reg[0]/C
+                         clock pessimism              0.000     5.021    
+                         clock uncertainty           -0.035     4.986    
+                         FDRE (Setup_FDRE_C_CE)      -0.061     4.925    u_rdm/o_cnt_align_refused_reg[0]
+  -------------------------------------------------------------------
+                         required time                          4.925    
+                         arrival time                          -3.567    
+  -------------------------------------------------------------------
+                         slack                                  1.358    
+
+Slack (MET) :             1.358ns  (required time - arrival time)
+  Source:                 u_req_fifo/rptr_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_rdm/o_cnt_align_refused_reg[0]/CE
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (clk rise@5.000ns - clk rise@0.000ns)
+  Data Path Delay:        3.537ns  (logic 1.223ns (34.577%)  route 2.314ns (65.423%))
+  Logic Levels:           15  (CARRY8=5 LUT2=1 LUT3=2 LUT4=2 LUT5=1 LUT6=3 RAMD32=1)
+  Clock Path Skew:        -0.009ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.021ns = ( 5.021 - 5.000 ) 
+    Source Clock Delay      (SCD):    0.030ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk rise edge)        0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=6073, unset)         0.030     0.030    u_req_fifo/clk
+                         FDRE                                         r  u_req_fifo/rptr_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_FDRE_C_Q)         0.077     0.107 r  u_req_fifo/rptr_reg[1]/Q
+                         net (fo=118, unplaced)       0.238     0.345    u_req_fifo/mem_reg_0_7_70_83/ADDRE1
+                                                                      r  u_req_fifo/mem_reg_0_7_70_83/RAME/RADR1
+                         RAMD32 (Prop_RAMD32_RADR1_O)
+                                                      0.139     0.484 r  u_req_fifo/mem_reg_0_7_70_83/RAME/O
+                         net (fo=4, unplaced)         0.119     0.603    u_req_fifo/clk_0[75]
+                                                                      r  u_req_fifo/o_p_boundary_refused_i_19/I0
+                         LUT6 (Prop_LUT6_I0_O)        0.150     0.753 r  u_req_fifo/o_p_boundary_refused_i_19/O
+                         net (fo=6, unplaced)         0.208     0.961    u_req_fifo/o_p_boundary_refused_i_19_n_0
+                                                                      r  u_req_fifo/o_cnt_window_refused[15]_i_95/I2
+                         LUT4 (Prop_LUT4_I2_O)        0.037     0.998 r  u_req_fifo/o_cnt_window_refused[15]_i_95/O
+                         net (fo=1, unplaced)         0.023     1.021    u_req_fifo/o_cnt_window_refused[15]_i_95_n_0
+                                                                      r  u_req_fifo/o_cnt_window_refused_reg[15]_i_94/S[1]
+                         CARRY8 (Prop_CARRY8_S[1]_CO[7])
+                                                      0.197     1.218 f  u_req_fifo/o_cnt_window_refused_reg[15]_i_94/CO[7]
+                         net (fo=1, unplaced)         0.005     1.223    u_req_fifo/o_cnt_window_refused_reg[15]_i_94_n_0
+                                                                      f  u_req_fifo/o_cnt_window_refused_reg[15]_i_93/CI
+                         CARRY8 (Prop_CARRY8_CI_CO[7])
+                                                      0.022     1.245 f  u_req_fifo/o_cnt_window_refused_reg[15]_i_93/CO[7]
+                         net (fo=1, unplaced)         0.005     1.250    u_req_fifo/o_cnt_window_refused_reg[15]_i_93_n_0
+                                                                      f  u_req_fifo/o_cnt_window_refused_reg[15]_i_60/CI
+                         CARRY8 (Prop_CARRY8_CI_CO[7])
+                                                      0.022     1.272 f  u_req_fifo/o_cnt_window_refused_reg[15]_i_60/CO[7]
+                         net (fo=1, unplaced)         0.005     1.277    u_req_fifo/o_cnt_window_refused_reg[15]_i_60_n_0
+                                                                      f  u_req_fifo/o_cnt_window_refused_reg[15]_i_21/CI
+                         CARRY8 (Prop_CARRY8_CI_O[1])
+                                                      0.076     1.353 r  u_req_fifo/o_cnt_window_refused_reg[15]_i_21/O[1]
+                         net (fo=2, unplaced)         0.184     1.537    u_regs/O[1]
+                                                                      r  u_regs/o_cnt_window_refused[15]_i_18/I3
+                         LUT4 (Prop_LUT4_I3_O)        0.068     1.605 f  u_regs/o_cnt_window_refused[15]_i_18/O
+                         net (fo=1, unplaced)         0.245     1.850    u_regs/o_cnt_window_refused[15]_i_18_n_0
+                                                                      f  u_regs/o_cnt_window_refused_reg[15]_i_6/DI[2]
+                         CARRY8 (Prop_CARRY8_DI[2]_CO[4])
+                                                      0.160     2.010 f  u_regs/o_cnt_window_refused_reg[15]_i_6/CO[4]
+                         net (fo=1, unplaced)         0.134     2.144    u_regs/u_rdm/g_window0
+                                                                      f  u_regs/o_cnt_window_refused[15]_i_3/I1
+                         LUT3 (Prop_LUT3_I1_O)        0.053     2.197 r  u_regs/o_cnt_window_refused[15]_i_3/O
+                         net (fo=3, unplaced)         0.192     2.389    u_req_fifo/o_cnt_tag_conflict_reg[0]_0
+                                                                      r  u_req_fifo/o_p_tag_conflict_i_2/I4
+                         LUT5 (Prop_LUT5_I4_O)        0.038     2.427 r  u_req_fifo/o_p_tag_conflict_i_2/O
+                         net (fo=2, unplaced)         0.186     2.613    u_req_fifo/o_p_tag_conflict_i_2_n_0
+                                                                      r  u_req_fifo/issue_desc[transaction_tag][3]_i_3/I1
+                         LUT3 (Prop_LUT3_I1_O)        0.038     2.651 f  u_req_fifo/issue_desc[transaction_tag][3]_i_3/O
+                         net (fo=2, unplaced)         0.186     2.837    u_req_fifo/issue_desc[transaction_tag][3]_i_3_n_0
+                                                                      f  u_req_fifo/o_cnt_window_refused[15]_i_4/I3
+                         LUT6 (Prop_LUT6_I3_O)        0.038     2.875 f  u_req_fifo/o_cnt_window_refused[15]_i_4/O
+                         net (fo=4, unplaced)         0.198     3.073    u_regs/o_cnt_window_refused_reg[0]
+                                                                      f  u_regs/o_p_boundary_refused_i_2/I1
+                         LUT2 (Prop_LUT2_I1_O)        0.070     3.143 r  u_regs/o_p_boundary_refused_i_2/O
+                         net (fo=2, unplaced)         0.186     3.329    u_req_fifo/o_cnt_align_refused_reg[0]
+                                                                      r  u_req_fifo/o_p_align_refused_i_1/I0
+                         LUT6 (Prop_LUT6_I0_O)        0.038     3.367 r  u_req_fifo/o_p_align_refused_i_1/O
+                         net (fo=33, unplaced)        0.200     3.567    u_rdm/o_cnt_align_refused_reg[0]_0
+                         FDRE                                         r  u_rdm/o_cnt_align_refused_reg[0]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk rise edge)        5.000     5.000 r  
+                                                      0.000     5.000 r  clk (IN)
+                         net (fo=6073, unset)         0.021     5.021    u_rdm/clk
+                         FDRE                                         r  u_rdm/o_cnt_align_refused_reg[0]/C
+                         clock pessimism              0.000     5.021    
+                         clock uncertainty           -0.035     4.986    
+                         FDRE (Setup_FDRE_C_CE)      -0.061     4.925    u_rdm/o_cnt_align_refused_reg[0]
+  -------------------------------------------------------------------
+                         required time                          4.925    
+                         arrival time                          -3.567    
+  -------------------------------------------------------------------
+                         slack                                  1.358    
+
+Slack (MET) :             1.358ns  (required time - arrival time)
+  Source:                 u_req_fifo/rptr_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_rdm/o_cnt_align_refused_reg[0]/CE
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (clk rise@5.000ns - clk rise@0.000ns)
+  Data Path Delay:        3.537ns  (logic 1.223ns (34.577%)  route 2.314ns (65.423%))
+  Logic Levels:           15  (CARRY8=5 LUT2=1 LUT3=2 LUT4=2 LUT5=1 LUT6=3 RAMD32=1)
+  Clock Path Skew:        -0.009ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.021ns = ( 5.021 - 5.000 ) 
+    Source Clock Delay      (SCD):    0.030ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk rise edge)        0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=6073, unset)         0.030     0.030    u_req_fifo/clk
+                         FDRE                                         r  u_req_fifo/rptr_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_FDRE_C_Q)         0.077     0.107 f  u_req_fifo/rptr_reg[1]/Q
+                         net (fo=118, unplaced)       0.238     0.345    u_req_fifo/mem_reg_0_7_70_83/ADDRE1
+                                                                      f  u_req_fifo/mem_reg_0_7_70_83/RAME/RADR1
+                         RAMD32 (Prop_RAMD32_RADR1_O)
+                                                      0.139     0.484 r  u_req_fifo/mem_reg_0_7_70_83/RAME/O
+                         net (fo=4, unplaced)         0.119     0.603    u_req_fifo/clk_0[75]
+                                                                      r  u_req_fifo/o_p_boundary_refused_i_19/I0
+                         LUT6 (Prop_LUT6_I0_O)        0.150     0.753 r  u_req_fifo/o_p_boundary_refused_i_19/O
+                         net (fo=6, unplaced)         0.208     0.961    u_req_fifo/o_p_boundary_refused_i_19_n_0
+                                                                      r  u_req_fifo/o_cnt_window_refused[15]_i_95/I2
+                         LUT4 (Prop_LUT4_I2_O)        0.037     0.998 r  u_req_fifo/o_cnt_window_refused[15]_i_95/O
+                         net (fo=1, unplaced)         0.023     1.021    u_req_fifo/o_cnt_window_refused[15]_i_95_n_0
+                                                                      r  u_req_fifo/o_cnt_window_refused_reg[15]_i_94/S[1]
+                         CARRY8 (Prop_CARRY8_S[1]_CO[7])
+                                                      0.197     1.218 f  u_req_fifo/o_cnt_window_refused_reg[15]_i_94/CO[7]
+                         net (fo=1, unplaced)         0.005     1.223    u_req_fifo/o_cnt_window_refused_reg[15]_i_94_n_0
+                                                                      f  u_req_fifo/o_cnt_window_refused_reg[15]_i_93/CI
+                         CARRY8 (Prop_CARRY8_CI_CO[7])
+                                                      0.022     1.245 f  u_req_fifo/o_cnt_window_refused_reg[15]_i_93/CO[7]
+                         net (fo=1, unplaced)         0.005     1.250    u_req_fifo/o_cnt_window_refused_reg[15]_i_93_n_0
+                                                                      f  u_req_fifo/o_cnt_window_refused_reg[15]_i_60/CI
+                         CARRY8 (Prop_CARRY8_CI_CO[7])
+                                                      0.022     1.272 f  u_req_fifo/o_cnt_window_refused_reg[15]_i_60/CO[7]
+                         net (fo=1, unplaced)         0.005     1.277    u_req_fifo/o_cnt_window_refused_reg[15]_i_60_n_0
+                                                                      f  u_req_fifo/o_cnt_window_refused_reg[15]_i_21/CI
+                         CARRY8 (Prop_CARRY8_CI_O[1])
+                                                      0.076     1.353 r  u_req_fifo/o_cnt_window_refused_reg[15]_i_21/O[1]
+                         net (fo=2, unplaced)         0.184     1.537    u_regs/O[1]
+                                                                      r  u_regs/o_cnt_window_refused[15]_i_18/I3
+                         LUT4 (Prop_LUT4_I3_O)        0.068     1.605 f  u_regs/o_cnt_window_refused[15]_i_18/O
+                         net (fo=1, unplaced)         0.245     1.850    u_regs/o_cnt_window_refused[15]_i_18_n_0
+                                                                      f  u_regs/o_cnt_window_refused_reg[15]_i_6/DI[2]
+                         CARRY8 (Prop_CARRY8_DI[2]_CO[4])
+                                                      0.160     2.010 f  u_regs/o_cnt_window_refused_reg[15]_i_6/CO[4]
+                         net (fo=1, unplaced)         0.134     2.144    u_regs/u_rdm/g_window0
+                                                                      f  u_regs/o_cnt_window_refused[15]_i_3/I1
+                         LUT3 (Prop_LUT3_I1_O)        0.053     2.197 r  u_regs/o_cnt_window_refused[15]_i_3/O
+                         net (fo=3, unplaced)         0.192     2.389    u_req_fifo/o_cnt_tag_conflict_reg[0]_0
+                                                                      r  u_req_fifo/o_p_tag_conflict_i_2/I4
+                         LUT5 (Prop_LUT5_I4_O)        0.038     2.427 r  u_req_fifo/o_p_tag_conflict_i_2/O
+                         net (fo=2, unplaced)         0.186     2.613    u_req_fifo/o_p_tag_conflict_i_2_n_0
+                                                                      r  u_req_fifo/issue_desc[transaction_tag][3]_i_3/I1
+                         LUT3 (Prop_LUT3_I1_O)        0.038     2.651 f  u_req_fifo/issue_desc[transaction_tag][3]_i_3/O
+                         net (fo=2, unplaced)         0.186     2.837    u_req_fifo/issue_desc[transaction_tag][3]_i_3_n_0
+                                                                      f  u_req_fifo/o_cnt_window_refused[15]_i_4/I3
+                         LUT6 (Prop_LUT6_I3_O)        0.038     2.875 f  u_req_fifo/o_cnt_window_refused[15]_i_4/O
+                         net (fo=4, unplaced)         0.198     3.073    u_regs/o_cnt_window_refused_reg[0]
+                                                                      f  u_regs/o_p_boundary_refused_i_2/I1
+                         LUT2 (Prop_LUT2_I1_O)        0.070     3.143 r  u_regs/o_p_boundary_refused_i_2/O
+                         net (fo=2, unplaced)         0.186     3.329    u_req_fifo/o_cnt_align_refused_reg[0]
+                                                                      r  u_req_fifo/o_p_align_refused_i_1/I0
+                         LUT6 (Prop_LUT6_I0_O)        0.038     3.367 r  u_req_fifo/o_p_align_refused_i_1/O
+                         net (fo=33, unplaced)        0.200     3.567    u_rdm/o_cnt_align_refused_reg[0]_0
+                         FDRE                                         r  u_rdm/o_cnt_align_refused_reg[0]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk rise edge)        5.000     5.000 r  
+                                                      0.000     5.000 r  clk (IN)
+                         net (fo=6073, unset)         0.021     5.021    u_rdm/clk
+                         FDRE                                         r  u_rdm/o_cnt_align_refused_reg[0]/C
+                         clock pessimism              0.000     5.021    
+                         clock uncertainty           -0.035     4.986    
+                         FDRE (Setup_FDRE_C_CE)      -0.061     4.925    u_rdm/o_cnt_align_refused_reg[0]
+  -------------------------------------------------------------------
+                         required time                          4.925    
+                         arrival time                          -3.567    
+  -------------------------------------------------------------------
+                         slack                                  1.358    
+
+Slack (MET) :             3.519ns  (required time - arrival time)
+  Source:                 rst_n
+                            (input port clocked by clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_lut/o_cnt_refused_reg[0]/CLR
+                            (recovery check against rising-edge clock clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             **async_default**
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Requirement:            5.000ns  (clk rise@5.000ns - clk rise@0.000ns)
+  Data Path Delay:        0.401ns  (logic 0.038ns (9.476%)  route 0.363ns (90.524%))
+  Logic Levels:           1  (LUT6=1)
+  Input Delay:            1.000ns
+  Clock Path Skew:        0.021ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.021ns = ( 5.021 - 5.000 ) 
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk rise edge)        0.000     0.000 r  
+                         input delay                  1.000     1.000    
+                                                      0.000     1.000 r  rst_n (IN)
+                         net (fo=14, unset)           0.000     1.000    u_lut/rst_n
+                                                                      r  u_lut/issue_desc[transaction_tag][3]_i_1/I5
+                         LUT6 (Prop_LUT6_I5_O)        0.038     1.038 f  u_lut/issue_desc[transaction_tag][3]_i_1/O
+                         net (fo=5735, unplaced)      0.363     1.401    u_lut/srst_cnt_reg[3]
+                         FDCE                                         f  u_lut/o_cnt_refused_reg[0]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk rise edge)        5.000     5.000 r  
+                                                      0.000     5.000 r  clk (IN)
+                         net (fo=6073, unset)         0.021     5.021    u_lut/clk
+                         FDCE                                         r  u_lut/o_cnt_refused_reg[0]/C
+                         clock pessimism              0.000     5.021    
+                         clock uncertainty           -0.035     4.986    
+                         FDCE (Recov_FDCE_C_CLR)     -0.066     4.920    u_lut/o_cnt_refused_reg[0]
+  -------------------------------------------------------------------
+                         required time                          4.920    
+                         arrival time                          -1.401    
+  -------------------------------------------------------------------
+                         slack                                  3.519    
+
+Slack (MET) :             3.519ns  (required time - arrival time)
+  Source:                 rst_n
+                            (input port clocked by clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_lut/o_cnt_refused_reg[10]/CLR
+                            (recovery check against rising-edge clock clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             **async_default**
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Requirement:            5.000ns  (clk rise@5.000ns - clk rise@0.000ns)
+  Data Path Delay:        0.401ns  (logic 0.038ns (9.476%)  route 0.363ns (90.524%))
+  Logic Levels:           1  (LUT6=1)
+  Input Delay:            1.000ns
+  Clock Path Skew:        0.021ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.021ns = ( 5.021 - 5.000 ) 
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk rise edge)        0.000     0.000 r  
+                         input delay                  1.000     1.000    
+                                                      0.000     1.000 r  rst_n (IN)
+                         net (fo=14, unset)           0.000     1.000    u_lut/rst_n
+                                                                      r  u_lut/issue_desc[transaction_tag][3]_i_1/I5
+                         LUT6 (Prop_LUT6_I5_O)        0.038     1.038 f  u_lut/issue_desc[transaction_tag][3]_i_1/O
+                         net (fo=5735, unplaced)      0.363     1.401    u_lut/srst_cnt_reg[3]
+                         FDCE                                         f  u_lut/o_cnt_refused_reg[10]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk rise edge)        5.000     5.000 r  
+                                                      0.000     5.000 r  clk (IN)
+                         net (fo=6073, unset)         0.021     5.021    u_lut/clk
+                         FDCE                                         r  u_lut/o_cnt_refused_reg[10]/C
+                         clock pessimism              0.000     5.021    
+                         clock uncertainty           -0.035     4.986    
+                         FDCE (Recov_FDCE_C_CLR)     -0.066     4.920    u_lut/o_cnt_refused_reg[10]
+  -------------------------------------------------------------------
+                         required time                          4.920    
+                         arrival time                          -1.401    
+  -------------------------------------------------------------------
+                         slack                                  3.519    
+
+Slack (MET) :             3.519ns  (required time - arrival time)
+  Source:                 rst_n
+                            (input port clocked by clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_lut/o_cnt_refused_reg[11]/CLR
+                            (recovery check against rising-edge clock clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             **async_default**
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Requirement:            5.000ns  (clk rise@5.000ns - clk rise@0.000ns)
+  Data Path Delay:        0.401ns  (logic 0.038ns (9.476%)  route 0.363ns (90.524%))
+  Logic Levels:           1  (LUT6=1)
+  Input Delay:            1.000ns
+  Clock Path Skew:        0.021ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.021ns = ( 5.021 - 5.000 ) 
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk rise edge)        0.000     0.000 r  
+                         input delay                  1.000     1.000    
+                                                      0.000     1.000 r  rst_n (IN)
+                         net (fo=14, unset)           0.000     1.000    u_lut/rst_n
+                                                                      r  u_lut/issue_desc[transaction_tag][3]_i_1/I5
+                         LUT6 (Prop_LUT6_I5_O)        0.038     1.038 f  u_lut/issue_desc[transaction_tag][3]_i_1/O
+                         net (fo=5735, unplaced)      0.363     1.401    u_lut/srst_cnt_reg[3]
+                         FDCE                                         f  u_lut/o_cnt_refused_reg[11]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk rise edge)        5.000     5.000 r  
+                                                      0.000     5.000 r  clk (IN)
+                         net (fo=6073, unset)         0.021     5.021    u_lut/clk
+                         FDCE                                         r  u_lut/o_cnt_refused_reg[11]/C
+                         clock pessimism              0.000     5.021    
+                         clock uncertainty           -0.035     4.986    
+                         FDCE (Recov_FDCE_C_CLR)     -0.066     4.920    u_lut/o_cnt_refused_reg[11]
+  -------------------------------------------------------------------
+                         required time                          4.920    
+                         arrival time                          -1.401    
+  -------------------------------------------------------------------
+                         slack                                  3.519    
+
+Slack (MET) :             3.519ns  (required time - arrival time)
+  Source:                 rst_n
+                            (input port clocked by clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_lut/o_cnt_refused_reg[12]/CLR
+                            (recovery check against rising-edge clock clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             **async_default**
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Requirement:            5.000ns  (clk rise@5.000ns - clk rise@0.000ns)
+  Data Path Delay:        0.401ns  (logic 0.038ns (9.476%)  route 0.363ns (90.524%))
+  Logic Levels:           1  (LUT6=1)
+  Input Delay:            1.000ns
+  Clock Path Skew:        0.021ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.021ns = ( 5.021 - 5.000 ) 
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk rise edge)        0.000     0.000 r  
+                         input delay                  1.000     1.000    
+                                                      0.000     1.000 r  rst_n (IN)
+                         net (fo=14, unset)           0.000     1.000    u_lut/rst_n
+                                                                      r  u_lut/issue_desc[transaction_tag][3]_i_1/I5
+                         LUT6 (Prop_LUT6_I5_O)        0.038     1.038 f  u_lut/issue_desc[transaction_tag][3]_i_1/O
+                         net (fo=5735, unplaced)      0.363     1.401    u_lut/srst_cnt_reg[3]
+                         FDCE                                         f  u_lut/o_cnt_refused_reg[12]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk rise edge)        5.000     5.000 r  
+                                                      0.000     5.000 r  clk (IN)
+                         net (fo=6073, unset)         0.021     5.021    u_lut/clk
+                         FDCE                                         r  u_lut/o_cnt_refused_reg[12]/C
+                         clock pessimism              0.000     5.021    
+                         clock uncertainty           -0.035     4.986    
+                         FDCE (Recov_FDCE_C_CLR)     -0.066     4.920    u_lut/o_cnt_refused_reg[12]
+  -------------------------------------------------------------------
+                         required time                          4.920    
+                         arrival time                          -1.401    
+  -------------------------------------------------------------------
+                         slack                                  3.519    
+
+Slack (MET) :             3.519ns  (required time - arrival time)
+  Source:                 rst_n
+                            (input port clocked by clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_lut/o_cnt_refused_reg[13]/CLR
+                            (recovery check against rising-edge clock clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             **async_default**
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Requirement:            5.000ns  (clk rise@5.000ns - clk rise@0.000ns)
+  Data Path Delay:        0.401ns  (logic 0.038ns (9.476%)  route 0.363ns (90.524%))
+  Logic Levels:           1  (LUT6=1)
+  Input Delay:            1.000ns
+  Clock Path Skew:        0.021ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.021ns = ( 5.021 - 5.000 ) 
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk rise edge)        0.000     0.000 r  
+                         input delay                  1.000     1.000    
+                                                      0.000     1.000 r  rst_n (IN)
+                         net (fo=14, unset)           0.000     1.000    u_lut/rst_n
+                                                                      r  u_lut/issue_desc[transaction_tag][3]_i_1/I5
+                         LUT6 (Prop_LUT6_I5_O)        0.038     1.038 f  u_lut/issue_desc[transaction_tag][3]_i_1/O
+                         net (fo=5735, unplaced)      0.363     1.401    u_lut/srst_cnt_reg[3]
+                         FDCE                                         f  u_lut/o_cnt_refused_reg[13]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk rise edge)        5.000     5.000 r  
+                                                      0.000     5.000 r  clk (IN)
+                         net (fo=6073, unset)         0.021     5.021    u_lut/clk
+                         FDCE                                         r  u_lut/o_cnt_refused_reg[13]/C
+                         clock pessimism              0.000     5.021    
+                         clock uncertainty           -0.035     4.986    
+                         FDCE (Recov_FDCE_C_CLR)     -0.066     4.920    u_lut/o_cnt_refused_reg[13]
+  -------------------------------------------------------------------
+                         required time                          4.920    
+                         arrival time                          -1.401    
+  -------------------------------------------------------------------
+                         slack                                  3.519    
+
+Slack (MET) :             3.519ns  (required time - arrival time)
+  Source:                 rst_n
+                            (input port clocked by clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_lut/o_cnt_refused_reg[14]/CLR
+                            (recovery check against rising-edge clock clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             **async_default**
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Requirement:            5.000ns  (clk rise@5.000ns - clk rise@0.000ns)
+  Data Path Delay:        0.401ns  (logic 0.038ns (9.476%)  route 0.363ns (90.524%))
+  Logic Levels:           1  (LUT6=1)
+  Input Delay:            1.000ns
+  Clock Path Skew:        0.021ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.021ns = ( 5.021 - 5.000 ) 
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk rise edge)        0.000     0.000 r  
+                         input delay                  1.000     1.000    
+                                                      0.000     1.000 r  rst_n (IN)
+                         net (fo=14, unset)           0.000     1.000    u_lut/rst_n
+                                                                      r  u_lut/issue_desc[transaction_tag][3]_i_1/I5
+                         LUT6 (Prop_LUT6_I5_O)        0.038     1.038 f  u_lut/issue_desc[transaction_tag][3]_i_1/O
+                         net (fo=5735, unplaced)      0.363     1.401    u_lut/srst_cnt_reg[3]
+                         FDCE                                         f  u_lut/o_cnt_refused_reg[14]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk rise edge)        5.000     5.000 r  
+                                                      0.000     5.000 r  clk (IN)
+                         net (fo=6073, unset)         0.021     5.021    u_lut/clk
+                         FDCE                                         r  u_lut/o_cnt_refused_reg[14]/C
+                         clock pessimism              0.000     5.021    
+                         clock uncertainty           -0.035     4.986    
+                         FDCE (Recov_FDCE_C_CLR)     -0.066     4.920    u_lut/o_cnt_refused_reg[14]
+  -------------------------------------------------------------------
+                         required time                          4.920    
+                         arrival time                          -1.401    
+  -------------------------------------------------------------------
+                         slack                                  3.519    
+
+Slack (MET) :             3.519ns  (required time - arrival time)
+  Source:                 rst_n
+                            (input port clocked by clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_lut/o_cnt_refused_reg[15]/CLR
+                            (recovery check against rising-edge clock clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             **async_default**
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Requirement:            5.000ns  (clk rise@5.000ns - clk rise@0.000ns)
+  Data Path Delay:        0.401ns  (logic 0.038ns (9.476%)  route 0.363ns (90.524%))
+  Logic Levels:           1  (LUT6=1)
+  Input Delay:            1.000ns
+  Clock Path Skew:        0.021ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.021ns = ( 5.021 - 5.000 ) 
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk rise edge)        0.000     0.000 r  
+                         input delay                  1.000     1.000    
+                                                      0.000     1.000 r  rst_n (IN)
+                         net (fo=14, unset)           0.000     1.000    u_lut/rst_n
+                                                                      r  u_lut/issue_desc[transaction_tag][3]_i_1/I5
+                         LUT6 (Prop_LUT6_I5_O)        0.038     1.038 f  u_lut/issue_desc[transaction_tag][3]_i_1/O
+                         net (fo=5735, unplaced)      0.363     1.401    u_lut/srst_cnt_reg[3]
+                         FDCE                                         f  u_lut/o_cnt_refused_reg[15]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk rise edge)        5.000     5.000 r  
+                                                      0.000     5.000 r  clk (IN)
+                         net (fo=6073, unset)         0.021     5.021    u_lut/clk
+                         FDCE                                         r  u_lut/o_cnt_refused_reg[15]/C
+                         clock pessimism              0.000     5.021    
+                         clock uncertainty           -0.035     4.986    
+                         FDCE (Recov_FDCE_C_CLR)     -0.066     4.920    u_lut/o_cnt_refused_reg[15]
+  -------------------------------------------------------------------
+                         required time                          4.920    
+                         arrival time                          -1.401    
+  -------------------------------------------------------------------
+                         slack                                  3.519    
+
+Slack (MET) :             3.519ns  (required time - arrival time)
+  Source:                 rst_n
+                            (input port clocked by clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_lut/o_cnt_refused_reg[16]/CLR
+                            (recovery check against rising-edge clock clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             **async_default**
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Requirement:            5.000ns  (clk rise@5.000ns - clk rise@0.000ns)
+  Data Path Delay:        0.401ns  (logic 0.038ns (9.476%)  route 0.363ns (90.524%))
+  Logic Levels:           1  (LUT6=1)
+  Input Delay:            1.000ns
+  Clock Path Skew:        0.021ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.021ns = ( 5.021 - 5.000 ) 
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk rise edge)        0.000     0.000 r  
+                         input delay                  1.000     1.000    
+                                                      0.000     1.000 r  rst_n (IN)
+                         net (fo=14, unset)           0.000     1.000    u_lut/rst_n
+                                                                      r  u_lut/issue_desc[transaction_tag][3]_i_1/I5
+                         LUT6 (Prop_LUT6_I5_O)        0.038     1.038 f  u_lut/issue_desc[transaction_tag][3]_i_1/O
+                         net (fo=5735, unplaced)      0.363     1.401    u_lut/srst_cnt_reg[3]
+                         FDCE                                         f  u_lut/o_cnt_refused_reg[16]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk rise edge)        5.000     5.000 r  
+                                                      0.000     5.000 r  clk (IN)
+                         net (fo=6073, unset)         0.021     5.021    u_lut/clk
+                         FDCE                                         r  u_lut/o_cnt_refused_reg[16]/C
+                         clock pessimism              0.000     5.021    
+                         clock uncertainty           -0.035     4.986    
+                         FDCE (Recov_FDCE_C_CLR)     -0.066     4.920    u_lut/o_cnt_refused_reg[16]
+  -------------------------------------------------------------------
+                         required time                          4.920    
+                         arrival time                          -1.401    
+  -------------------------------------------------------------------
+                         slack                                  3.519    
+
+Slack (MET) :             3.519ns  (required time - arrival time)
+  Source:                 rst_n
+                            (input port clocked by clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_lut/o_cnt_refused_reg[17]/CLR
+                            (recovery check against rising-edge clock clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             **async_default**
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Requirement:            5.000ns  (clk rise@5.000ns - clk rise@0.000ns)
+  Data Path Delay:        0.401ns  (logic 0.038ns (9.476%)  route 0.363ns (90.524%))
+  Logic Levels:           1  (LUT6=1)
+  Input Delay:            1.000ns
+  Clock Path Skew:        0.021ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.021ns = ( 5.021 - 5.000 ) 
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk rise edge)        0.000     0.000 r  
+                         input delay                  1.000     1.000    
+                                                      0.000     1.000 r  rst_n (IN)
+                         net (fo=14, unset)           0.000     1.000    u_lut/rst_n
+                                                                      r  u_lut/issue_desc[transaction_tag][3]_i_1/I5
+                         LUT6 (Prop_LUT6_I5_O)        0.038     1.038 f  u_lut/issue_desc[transaction_tag][3]_i_1/O
+                         net (fo=5735, unplaced)      0.363     1.401    u_lut/srst_cnt_reg[3]
+                         FDCE                                         f  u_lut/o_cnt_refused_reg[17]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk rise edge)        5.000     5.000 r  
+                                                      0.000     5.000 r  clk (IN)
+                         net (fo=6073, unset)         0.021     5.021    u_lut/clk
+                         FDCE                                         r  u_lut/o_cnt_refused_reg[17]/C
+                         clock pessimism              0.000     5.021    
+                         clock uncertainty           -0.035     4.986    
+                         FDCE (Recov_FDCE_C_CLR)     -0.066     4.920    u_lut/o_cnt_refused_reg[17]
+  -------------------------------------------------------------------
+                         required time                          4.920    
+                         arrival time                          -1.401    
+  -------------------------------------------------------------------
+                         slack                                  3.519    
+
+Slack (MET) :             3.519ns  (required time - arrival time)
+  Source:                 rst_n
+                            (input port clocked by clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            u_lut/o_cnt_refused_reg[18]/CLR
+                            (recovery check against rising-edge clock clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             **async_default**
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Requirement:            5.000ns  (clk rise@5.000ns - clk rise@0.000ns)
+  Data Path Delay:        0.401ns  (logic 0.038ns (9.476%)  route 0.363ns (90.524%))
+  Logic Levels:           1  (LUT6=1)
+  Input Delay:            1.000ns
+  Clock Path Skew:        0.021ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.021ns = ( 5.021 - 5.000 ) 
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk rise edge)        0.000     0.000 r  
+                         input delay                  1.000     1.000    
+                                                      0.000     1.000 r  rst_n (IN)
+                         net (fo=14, unset)           0.000     1.000    u_lut/rst_n
+                                                                      r  u_lut/issue_desc[transaction_tag][3]_i_1/I5
+                         LUT6 (Prop_LUT6_I5_O)        0.038     1.038 f  u_lut/issue_desc[transaction_tag][3]_i_1/O
+                         net (fo=5735, unplaced)      0.363     1.401    u_lut/srst_cnt_reg[3]
+                         FDCE                                         f  u_lut/o_cnt_refused_reg[18]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk rise edge)        5.000     5.000 r  
+                                                      0.000     5.000 r  clk (IN)
+                         net (fo=6073, unset)         0.021     5.021    u_lut/clk
+                         FDCE                                         r  u_lut/o_cnt_refused_reg[18]/C
+                         clock pessimism              0.000     5.021    
+                         clock uncertainty           -0.035     4.986    
+                         FDCE (Recov_FDCE_C_CLR)     -0.066     4.920    u_lut/o_cnt_refused_reg[18]
+  -------------------------------------------------------------------
+                         required time                          4.920    
+                         arrival time                          -1.401    
+  -------------------------------------------------------------------
+                         slack                                  3.519    
+
+
+
+

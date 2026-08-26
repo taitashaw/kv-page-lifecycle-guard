@@ -1,0 +1,10 @@
+Sample in Buffer,Sample in Window,TRIGGER,kv_guard_bd_i/kv_lifecycle_guard_0_dbg_rstn,kv_guard_bd_i/kv_lifecycle_guard_0_dbg_heartbeat[15:0],kv_guard_bd_i/kv_lifecycle_guard_0_dbg_refcount[7:0],kv_guard_bd_i/kv_lifecycle_guard_0_dbg_reservation[7:0],kv_guard_bd_i/kv_lifecycle_guard_0_dbg_inflight[5:0],kv_guard_bd_i/kv_lifecycle_guard_0_dbg_fill_pending[3:0],kv_guard_bd_i/kv_lifecycle_guard_0_dbg_generation[7:0],kv_guard_bd_i/kv_lifecycle_guard_0_dbg_exp_generation[7:0],kv_guard_bd_i/kv_lifecycle_guard_0_dbg_slot[5:0],kv_guard_bd_i/kv_lifecycle_guard_0_dbg_phys[5:0],kv_guard_bd_i/kv_lifecycle_guard_0_dbg_reuse_req,kv_guard_bd_i/kv_lifecycle_guard_0_dbg_reuse_grant,kv_guard_bd_i/kv_lifecycle_guard_0_dbg_reuse_refused,kv_guard_bd_i/kv_lifecycle_guard_0_dbg_stale,kv_guard_bd_i/kv_lifecycle_guard_0_dbg_payload_mm,kv_guard_bd_i/kv_lifecycle_guard_0_dbg_evictable,kv_guard_bd_i/kv_lifecycle_guard_0_dbg_outstanding[1:0],kv_guard_bd_i/kv_lifecycle_guard_0_dbg_ar_wait[15:0],kv_guard_bd_i/kv_lifecycle_guard_0_dbg_rd_latency[15:0],kv_guard_bd_i/kv_lifecycle_guard_0_dbg_rd_latency_max[15:0],kv_guard_bd_i/kv_lifecycle_guard_0_dbg_sticky[7:0]
+Radix - UNSIGNED,UNSIGNED,UNSIGNED,HEX,HEX,HEX,HEX,HEX,HEX,HEX,HEX,HEX,HEX,HEX,HEX,HEX,HEX,HEX,HEX,HEX,HEX,HEX,HEX,HEX
+0,0,1,1,2345,00,00,01,0,00,00,05,09,0,0,1,0,0,0,0,0000,0000,0000,00
+1,1,0,1,1066,00,00,02,0,00,00,05,09,1,0,0,0,0,0,0,0000,0000,0000,01
+2,2,0,1,8aa4,00,00,03,0,00,00,05,09,1,0,0,0,0,0,0,0000,0000,0000,01
+3,3,0,1,9f44,00,00,04,0,00,00,05,09,1,0,0,0,0,0,0,0000,0000,0000,01
+4,4,0,1,1d96,00,00,05,0,00,00,05,09,1,0,0,0,0,0,0,0000,0000,0000,01
+5,5,0,1,46a8,00,00,06,0,00,00,05,09,1,0,0,0,0,0,0,0000,0000,0000,01
+6,6,0,1,fb5a,00,00,07,0,00,00,05,09,1,0,0,0,0,0,0,0000,0000,0000,01
+7,7,0,1,365a,00,00,08,0,00,00,05,09,1,0,0,0,0,0,0,0000,0000,0000,01

@@ -1,0 +1,44 @@
+{
+  "derived_from_hashed_source": {
+    "gm/types.py": "51a60f8e9f79e2b1bdac95398bff8c66397959e8f3bbbf4312ac1d0cb9174d28",
+    "gm/sim.py": "662c68d8fa5c83c3728024285e6e82a91ac52763ddd5a2e29c803997cfccab9b",
+    "gm/policies.py": "0f5a3ee5addc60304d78d21553714a23bbb6e16be9e49d5669cad1c0c31f2e89"
+  },
+  "N_out": 2,
+  "L_down_max_at_C_i_144": 784,
+  "dispatch_queue_depth": 8,
+  "envelope": {
+    "C_max": 512,
+    "B_fixed": 32,
+    "refresh": 64,
+    "window": 1024,
+    "bypass_txns": 0,
+    "fifo_non_preemptive": true
+  },
+  "policies": [
+    "fifo",
+    "edf_only",
+    "credit_only",
+    "tuned_axi_qos",
+    "lifecycle_edf",
+    "independent_dual_guard",
+    "independent_memory_safe_guard",
+    "separable_conservative_guard",
+    "integrated"
+  ],
+  "horizon": "derived per trace by the runner; NOT a constant in gm/",
+  "row_exclusion": "none (asserted in sweep_b.validate)",
+  "censoring_predicate": [
+    "uncensored = [r for r in fetches if r.deadline <= horizon]"
+  ],
+  "PRIMARY_GATES": {
+    "STATUS": "NOT PRESENT IN ANY HASHED SOURCE OR IN THE MANIFEST",
+    "on_time_goodput_gain_pct": 10,
+    "total_throughput_retained_pct": 90,
+    "qualifying_adjacent_loads": 2,
+    "qualifying_primary_seeds": 3,
+    "safety_accounting_violations": 0,
+    "rejection_only_advantage": false,
+    "provenance": "quarantine_sweep_A/FROZEN_SWEEP_PLAN.md lines 47-48, dated 2026-08-23, carried forward unchanged. NOT restated in any Sweep-B pre-launch artifact and NOT in the manifest."
+  }
+}
