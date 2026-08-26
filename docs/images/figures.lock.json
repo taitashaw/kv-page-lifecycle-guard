@@ -8,15 +8,15 @@
  },
  {
   "n": 2,
-  "src": "docs/images/block-design.png",
-  "src_kind": "repo",
+  "src": "https://github.com/user-attachments/assets/e157beed-1575-44c2-8e5e-09a2d7eaee26",
+  "src_kind": "external",
   "caption_sha": "e5e945508e5e20a7",
   "caption_head": "The block design as built, which is Figure 1 in real IP. The guard's t"
  },
  {
   "n": 3,
-  "src": "docs/images/schematic-synth.png",
-  "src_kind": "repo",
+  "src": "https://github.com/user-attachments/assets/70a75ee5-db29-46ee-b597-f36ad4949b97",
+  "src_kind": "external",
   "caption_sha": "2039437cd2e9c1d4",
   "caption_head": "Post-synthesis netlist schematic, eleven cells and 1,456 nets. This is"
  },
