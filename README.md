@@ -83,7 +83,7 @@ LUTRAM 2%, BRAM 8%), power by rail totalling 3.628 W of which the PS is 2.642 W,
 timing at WNS 0.242 ns and WHS 0.010 ns, and the run table carrying both
 strategies with their elapsed times.*
 
-![device view]<img width="2000" height="1260" alt="image" src="https://github.com/user-attachments/assets/9b4c60a4-dfef-41a6-a2cf-76387e365931" />
+<img width="2000" height="1260" alt="image" src="https://github.com/user-attachments/assets/9b4c60a4-dfef-41a6-a2cf-76387e365931" />
 
 
 ***Figure 3.** Implemented device view. Placed logic occupies clock regions
