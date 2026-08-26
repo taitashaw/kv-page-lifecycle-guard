@@ -1,0 +1,58 @@
+[
+ {
+  "n": 1,
+  "src": "docs/images/architecture.svg",
+  "src_kind": "repo",
+  "caption_sha": "2147a1ae78af3c4c",
+  "caption_head": "End-to-end architecture. The PS writes control at `0xA000_0000`; the g"
+ },
+ {
+  "n": 2,
+  "src": "docs/images/block-design.png",
+  "src_kind": "repo",
+  "caption_sha": "e5e945508e5e20a7",
+  "caption_head": "The block design as built, which is Figure 1 in real IP. The guard's t"
+ },
+ {
+  "n": 3,
+  "src": "docs/images/schematic-synth.png",
+  "src_kind": "repo",
+  "caption_sha": "2039437cd2e9c1d4",
+  "caption_head": "Post-synthesis netlist schematic, eleven cells and 1,456 nets. This is"
+ },
+ {
+  "n": 4,
+  "src": "https://github.com/user-attachments/assets/fa9b4469-d529-4775-89a6-f4301d512651",
+  "src_kind": "external",
+  "caption_sha": "7629a96a861c6258",
+  "caption_head": "Post-implementation dashboard. Utilisation by type (LUT 7%, FF 5%, LUT"
+ },
+ {
+  "n": 5,
+  "src": "https://github.com/user-attachments/assets/9b4c60a4-dfef-41a6-a2cf-76387e365931",
+  "src_kind": "external",
+  "caption_sha": "2b54f858e35b9fce",
+  "caption_head": "Implemented device view. Placed logic occupies clock regions X1Y0 to X"
+ },
+ {
+  "n": 6,
+  "src": "docs/images/schematic-impl.png",
+  "src_kind": "repo",
+  "caption_sha": "cee8e7e55731d8b8",
+  "caption_head": "The same netlist after implementation, ten cells and 1,407 nets. One c"
+ },
+ {
+  "n": 7,
+  "src": "https://github.com/user-attachments/assets/9ad8c398-4000-4c90-87f0-0cc9ca20d90d",
+  "src_kind": "external",
+  "caption_sha": "17df80aa88f31b96",
+  "caption_head": "Simulation counters. `dbg_rd_latency` and `dbg_rd_latency_max` both re"
+ },
+ {
+  "n": 8,
+  "src": "https://github.com/user-attachments/assets/c26c2d39-9ca6-429b-b7ff-e22430f17bfc",
+  "src_kind": "external",
+  "caption_sha": "1e939d6d87860b6f",
+  "caption_head": "The safety property on silicon, twenty-one named probes. `dbg_refcount"
+ }
+]
