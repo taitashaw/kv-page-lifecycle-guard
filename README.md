@@ -22,6 +22,16 @@ and OCM excluded from its address space. The safe-reuse predicate, and the
 draining case the design exists to catch, are called out inside the fabric
 block.*
 
+![block design](docs/images/block-design.png)
+
+***Figure 2.** The block design as built, which is Figure 1 in real IP. The
+guard's twenty-one named `dbg_*` ports fan out into `probe0` through `probe20`
+on `ila_lifecycle`, so Hardware Manager names every field instead of showing one
+wide bus. `const_one` drives `ext_reset_in` on `rst_ps8_0_200M`: that pin is
+active-low by default, so leaving it unconnected holds the whole design in reset.
+`sila_axi` taps both AXI links for protocol-decoded capture, and `jtag_axi_0`
+drives the guard over JTAG with no software running on the PS.*
+
 ---
 
 ## Verified results
@@ -51,6 +61,13 @@ Strategy `Flow_PerfOptimized_high`, 29 s. Four debug cores reached the netlist:
 Debug hub: `C_CLK_INPUT_FREQ_HZ 187500000`, `C_ENABLE_CLK_DIVIDER false`,
 `C_USER_SCAN_CHAIN 1`. The divider must be **false** here; see the engineering log.
 
+![post-synthesis schematic](docs/images/schematic-synth.png)
+
+***Figure 3.** Post-synthesis netlist schematic, eleven cells and 1,456 nets.
+This is what synthesis actually produced, as opposed to what the block design
+asked for, and it is the artifact that confirms all four debug cores survived
+into the netlist rather than being optimised away as unloaded logic.*
+
 ### Implementation on xczu7ev-ffvc1156-2-e, MEASURED
 
 Strategy `Performance_ExplorePostRoutePhysOpt`, 4 min 34 s.
@@ -74,11 +91,11 @@ Strategy `Performance_ExplorePostRoutePhysOpt`, 4 min 34 s.
 | LUT as Memory | 2,533 | 101,760 | 2.49 |
 | CLB Registers | 22,745 | 460,800 | 4.94 |
 | Block RAM tiles | 26 | 312 | 8.33 |
-| URAM / DSPs | 0 | — | 0.00 |
+| URAM / DSPs | 0 | n/a | 0.00 |
 
 ![dashboard](https://github.com/user-attachments/assets/fa9b4469-d529-4775-89a6-f4301d512651)
 
-***Figure 2.** Post-implementation dashboard. Utilisation by type (LUT 7%, FF 5%,
+***Figure 4.** Post-implementation dashboard. Utilisation by type (LUT 7%, FF 5%,
 LUTRAM 2%, BRAM 8%), power by rail totalling 3.628 W of which the PS is 2.642 W,
 timing at WNS 0.242 ns and WHS 0.010 ns, and the run table carrying both
 strategies with their elapsed times.*
@@ -86,9 +103,17 @@ strategies with their elapsed times.*
 <img width="2000" height="1260" alt="image" src="https://github.com/user-attachments/assets/9b4c60a4-dfef-41a6-a2cf-76387e365931" />
 
 
-***Figure 3.** Implemented device view. Placed logic occupies clock regions
+***Figure 5.** Implemented device view. Placed logic occupies clock regions
 X1Y0 to X1Y4 and X2Y2 to X3Y3, under 7% of the fabric. The isolated column at
 X0Y1 is the debug hub.*
+
+![post-implementation schematic](docs/images/schematic-impl.png)
+
+***Figure 6.** The same netlist after implementation, ten cells and 1,407 nets.
+One cell and forty-nine nets fewer than Figure 3, because `opt_design` runs
+between the two and folds away constants and redundant nets before placement.
+Reading the pair together is the fastest way to confirm optimisation removed only
+that, and left every debug core and the guard itself intact.*
 
 #### Where the resources actually go
 
@@ -177,7 +202,7 @@ result stands while latency measurement does not.
 <img width="2000" height="1117" alt="image" src="https://github.com/user-attachments/assets/9ad8c398-4000-4c90-87f0-0cc9ca20d90d" />
 
 
-***Figure 4.** Simulation counters. `dbg_rd_latency` and `dbg_rd_latency_max`
+***Figure 7.** Simulation counters. `dbg_rd_latency` and `dbg_rd_latency_max`
 both read `0x0012`, the 18-cycle read latency the testbench responder produces.
 `dbg_sticky` reads `8f`. On hardware these read zero, because DDR never
 completes the read and the latency window never closes.*
@@ -199,17 +224,19 @@ Every figure below is a Vivado capture of the design as it currently stands.
 | gate | figure | the one thing to look for |
 |---|---|---|
 | Simulation | `sim-waveform.png` | `checks=25`, `errors=0` on the bench that drives the real AXI boundary |
-| Simulation, counters | `sim-latency.png` | `dbg_rd_latency=0012`, `dbg_sticky=8f` |
-| Block design | `block-design.png` | 21 named probes fanning into the ILA; `const_one` into both reset pins |
-| Resources and power | `dashboard.png` | LUT 7%, FF 5%, BRAM 8%, 3.628 W, DRC 13, methodology 9 |
-| Implementation | `device-view.png` | placed cells, timing closed |
+| Simulation, counters | Fig 7 `sim-latency.png` | `dbg_rd_latency=0012`, `dbg_sticky=8f` |
+| Block design | Fig 2 `block-design.png` | 21 named probes fanning into the ILA; `const_one` into `ext_reset_in` |
+| Synthesis | Fig 3 `schematic-synth.png` | 11 cells, 1,456 nets; all four debug cores present |
+| Resources and power | Fig 4 `dashboard.png` | LUT 7%, FF 5%, BRAM 8%, 3.628 W, DRC 13, methodology 9 |
+| Implementation | Fig 5 `device-view.png` | placed cells, timing closed |
+| Implementation, netlist | Fig 6 `schematic-impl.png` | 10 cells, 1,407 nets; only constants folded away |
 | Project summary | `project-summary.png` | WNS 0.242, 0 failing of 53,926 |
-| **Hardware** | **`ila-hardware.png`** | **`refcount=00`, `inflight` 01 to 08, `reuse_grant` flat at 0** |
+| **Hardware** | **Fig 8 `ila-hardware.png`** | **`refcount=00`, `inflight` 01 to 08, `reuse_grant` flat at 0** |
 
 <img width="2000" height="970" alt="image" src="https://github.com/user-attachments/assets/c26c2d39-9ca6-429b-b7ff-e22430f17bfc" />
 
 
-***Figure 5.** The safety property on silicon, twenty-one named probes.
+***Figure 8.** The safety property on silicon, twenty-one named probes.
 `dbg_refcount` holds `00` while `dbg_inflight` steps `01` through `08`,
 `dbg_reuse_req` asserts on each, and **`dbg_reuse_grant` stays flat at `0` for
 all eight**. `dbg_sticky` bit 0 latches the refusal. Eight chances to release a
