@@ -62,7 +62,8 @@ Strategy `Flow_PerfOptimized_high`, 29 s. Four debug cores reached the netlist:
 Debug hub: `C_CLK_INPUT_FREQ_HZ 187500000`, `C_ENABLE_CLK_DIVIDER false`,
 `C_USER_SCAN_CHAIN 1`. The divider must be **false** here; see the engineering log.
 
-![post-synthesis schematic](docs/images/schematic-synth.png)
+<img width="1500" height="945" alt="image" src="https://github.com/user-attachments/assets/70a75ee5-db29-46ee-b597-f36ad4949b97" />
+
 
 ***Figure 3.** Post-synthesis netlist schematic, eleven cells and 1,456 nets.
 This is what synthesis actually produced, as opposed to what the block design
