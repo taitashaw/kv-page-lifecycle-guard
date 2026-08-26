@@ -45,7 +45,7 @@ Strategy `Flow_PerfOptimized_high`, 29 s. Four debug cores reached the netlist:
 Debug hub: `C_CLK_INPUT_FREQ_HZ 187500000`, `C_ENABLE_CLK_DIVIDER false`,
 `C_USER_SCAN_CHAIN 1`. The divider must be **false** here; see the engineering log.
 
-![dashboard](docs/images/dashboard.png)
+![dashboard](<img width="2000" height="1170" alt="image" src="https://github.com/user-attachments/assets/fa9b4469-d529-4775-89a6-f4301d512651" />)
 
 ### Implementation on xczu7ev-ffvc1156-2-e, MEASURED
 
