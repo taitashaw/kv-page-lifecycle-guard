@@ -206,7 +206,8 @@ Every figure below is a Vivado capture of the design as it currently stands.
 | Project summary | `project-summary.png` | WNS 0.242, 0 failing of 53,926 |
 | **Hardware** | **`ila-hardware.png`** | **`refcount=00`, `inflight` 01 to 08, `reuse_grant` flat at 0** |
 
-![ila on hardware](docs/images/ila-hardware.png)
+<img width="2000" height="970" alt="image" src="https://github.com/user-attachments/assets/c26c2d39-9ca6-429b-b7ff-e22430f17bfc" />
+
 
 ***Figure 5.** The safety property on silicon, twenty-one named probes.
 `dbg_refcount` holds `00` while `dbg_inflight` steps `01` through `08`,
