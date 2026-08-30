@@ -45,3 +45,4 @@ boot/*.elf
 boot/*.bin
 boot/BOOT.BIN
 *.pre_dbg
+docs/video/*.mp4
