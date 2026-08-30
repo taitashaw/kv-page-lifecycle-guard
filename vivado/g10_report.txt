@@ -1,0 +1,11 @@
+### bringup (attempt 1): rc=0  PL evidence=yes
+###       PCAP_STATUS after isolation removal: FFCA3010:   20000A02
+### attempt 1: ilas=2  axi=1
+### lifecycle ILA found: hw_ila_1
+### GO received, recorder rolling
+### PHASE 1 safe traffic: reuse on a draining page must be REFUSED
+###   grants=00000000  refused=00000004  trigger still silent
+### PHASE 2 removing the interlock: CTRL bit 2
+###   grants=00000004  unsafe_commits=00000004  CTRL=00000015
+### VIOLATION TRIGGER FIRED
+### G10 done.
